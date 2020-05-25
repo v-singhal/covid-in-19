@@ -85,7 +85,7 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         R.layout.item_state_aon
     ) {
         override fun onBind(data: HomeFeedData?) {
-            itemView.tv_state_name.text = """- ${data?.state}"""
+            itemView.tv_state_name.text = data?.state
             itemView.tv_confirmed.text = StringUtils.formatNumberString(
                 data?.confirmed ?: "---",
                 false

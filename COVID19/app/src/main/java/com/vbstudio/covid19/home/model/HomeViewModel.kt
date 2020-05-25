@@ -69,6 +69,8 @@ class HomeViewModel : ViewModel() {
             stateDataList.add(HomeFeedData(it.value))
         }
 
+        stateDataList.sortByDescending { it.confirmed?.toInt() }
+
         _homeFeedLiveData.postValue(stateDataList)
     }
 }
