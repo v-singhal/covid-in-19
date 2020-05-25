@@ -12,7 +12,7 @@ class AppModule(private val application: Covid19Application) {
 
     @Provides
     @Singleton
-    fun provideApplication(): Covid19Application? {
+    fun provideApplication(): Covid19Application {
         return application
     }
 

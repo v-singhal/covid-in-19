@@ -45,9 +45,13 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
             }
             builder.url(url)
             for ((key, value) in getAuthenticationHeaders().entries) {
-                if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value)) {
-                    if (chain.request().headers()[key] == null) {
-                        builder.header(key, value)
+                key?.let { keyIt ->
+                    value?.let { valueIt ->
+                        if (!TextUtils.isEmpty(keyIt) && !TextUtils.isEmpty(valueIt)) {
+                            if (chain.request().headers()[keyIt] == null) {
+                                builder.header(keyIt, valueIt)
+                            }
+                        }
                     }
                 }
             }
