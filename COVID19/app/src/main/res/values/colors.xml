@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">@color/green</color>
+    <color name="colorPrimaryDark">@color/darkGreen</color>
+    <color name="colorAccent">@color/yellow</color>
+
+    <!--Color pallet-->
+    <color name="darkGreen">#0C4056</color>
+    <color name="green">#20BDA1</color>
+    <color name="yellow">#EFD477</color>
+    <color name="orange">#FB6660</color>
+    <color name="pink">#FB2162</color>
+
 </resources>
