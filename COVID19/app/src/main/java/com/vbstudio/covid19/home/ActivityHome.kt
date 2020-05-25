@@ -1,18 +1,18 @@
-package com.vbstudio.covid19
+package com.vbstudio.covid19.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.vbstudio.covid19.ui.main.MainFragment
+import com.vbstudio.covid19.R
 
-class MainActivity : AppCompatActivity() {
+class ActivityHome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.activity_home)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.container, FragmentHome.newInstance())
+                .commitNow()
         }
     }
 }
