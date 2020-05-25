@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.vbstudio.annotations.DaggerFragment
 import com.vbstudio.covid19.R
 
+@DaggerFragment
 class FragmentHome : Fragment() {
 
     private lateinit var viewModel: HomeViewModel

@@ -2,8 +2,8 @@ package com.vbstudio.covid19.injector.modules;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import com.vbstudio.covid19.injector.ActivityScope;
-import com.vbstudio.covid19.injector.FragmentScope;
+import com.vbstudio.covid19.core.injection.exposed.ActivityScope;
+import com.vbstudio.covid19.core.injection.exposed.FragmentScope;
 
 {{#imports}}
 import {{.}};

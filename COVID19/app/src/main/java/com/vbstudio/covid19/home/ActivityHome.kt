@@ -1,10 +1,12 @@
 package com.vbstudio.covid19.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vbstudio.annotations.DaggerActivity
 import com.vbstudio.covid19.R
+import com.vbstudio.covid19.core.BaseActivity
 
-class ActivityHome : AppCompatActivity() {
+@DaggerActivity
+class ActivityHome : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
