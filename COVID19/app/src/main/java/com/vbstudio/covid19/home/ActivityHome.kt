@@ -3,7 +3,7 @@ package com.vbstudio.covid19.home
 import android.os.Bundle
 import com.vbstudio.annotations.DaggerActivity
 import com.vbstudio.covid19.R
-import com.vbstudio.covid19.core.BaseActivity
+import com.vbstudio.covid19.core.ui.BaseActivity
 
 @DaggerActivity
 class ActivityHome : BaseActivity() {

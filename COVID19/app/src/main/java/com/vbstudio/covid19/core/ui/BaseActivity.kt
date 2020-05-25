@@ -1,4 +1,4 @@
-package com.vbstudio.covid19.core
+package com.vbstudio.covid19.core.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

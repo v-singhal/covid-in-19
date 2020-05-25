@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vbstudio.annotations.DaggerFragment
 import com.vbstudio.covid19.R
@@ -29,7 +30,18 @@ class FragmentHome : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
+        addObserver()
+        getHomeData()
+    }
+
+    private fun addObserver() {
+        viewModel.countryData.observe(viewLifecycleOwner, Observer { countryData ->
+
+        })
+    }
+
+    private fun getHomeData() {
+        viewModel.getHomeData()
     }
 
 }

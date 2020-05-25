@@ -45,12 +45,10 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
             }
             builder.url(url)
             for ((key, value) in getAuthenticationHeaders().entries) {
-                key?.let { keyIt ->
-                    value?.let { valueIt ->
-                        if (!TextUtils.isEmpty(keyIt) && !TextUtils.isEmpty(valueIt)) {
-                            if (chain.request().headers()[keyIt] == null) {
-                                builder.header(keyIt, valueIt)
-                            }
+                value?.let { valueIt ->
+                    if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(valueIt)) {
+                        if (chain.request().headers()[key] == null) {
+                            builder.header(key, valueIt)
                         }
                     }
                 }
@@ -69,7 +67,7 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
         return client
     }
 
-    private fun getAuthenticationHeaders(): Map<String?, String?> {
+    private fun getAuthenticationHeaders(): Map<String, String?> {
         return HashMap()
     }
 
@@ -88,7 +86,7 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
         okHttpBuilder.addInterceptor(loggingInterceptor)
     }
 
-    fun build(baseUrl: String): Retrofit? {
+    fun build(baseUrl: String): Retrofit {
         return retrofitBuilder
             .baseUrl("$baseUrl/")
             .client(getClient())
