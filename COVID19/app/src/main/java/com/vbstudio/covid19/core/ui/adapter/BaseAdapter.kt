@@ -12,6 +12,6 @@ abstract class BaseViewHolder<T>(
         .from(parent.context)
         .inflate(latoutId, parent, false)
 ) {
-    abstract fun onBind(t: T?)
+    abstract fun onBind(data: T?, position: Int)
 
 }

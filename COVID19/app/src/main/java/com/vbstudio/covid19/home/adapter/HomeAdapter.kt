@@ -18,6 +18,11 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var homeFeedDataList: List<HomeFeedData>? = null
 
+    companion object {
+        const val OPACITY_EVEN_ROW = 0.2F
+        const val OPACITY_ODD_ROW = 0F
+    }
+
     override fun getItemViewType(position: Int): Int {
         return homeFeedDataList?.get(position)?.type!!.ordinal
     }
@@ -32,9 +37,9 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CountryViewHolder) {
-            holder.onBind(homeFeedDataList?.get(position))
+            holder.onBind(homeFeedDataList?.get(position), position)
         } else if (holder is StateViewHolder) {
-            holder.onBind(homeFeedDataList?.get(position))
+            holder.onBind(homeFeedDataList?.get(position), position)
         }
     }
 
@@ -53,7 +58,7 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent,
         R.layout.item_country_aon
     ) {
-        override fun onBind(data: HomeFeedData?) {
+        override fun onBind(data: HomeFeedData?, position: Int) {
             itemView.tv_confirmed.text = StringUtils.formatNumberString(
                 data?.confirmed ?: "---",
                 true
@@ -84,7 +89,7 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent,
         R.layout.item_state_aon
     ) {
-        override fun onBind(data: HomeFeedData?) {
+        override fun onBind(data: HomeFeedData?, position: Int) {
             itemView.tv_state_name.text = data?.state
             itemView.tv_confirmed.text = StringUtils.formatNumberString(
                 data?.confirmed ?: "---",
@@ -102,6 +107,7 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 data?.deaths ?: "---",
                 false
             )
+            itemView.setBackgroundResource(if (position % 2 == 0) R.color.colorPrimaryDark else R.color.mediumGreen)
         }
     }
 }
