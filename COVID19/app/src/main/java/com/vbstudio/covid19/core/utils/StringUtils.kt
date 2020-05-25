@@ -26,7 +26,7 @@ class StringUtils {
                 commasInserted++
             }
 
-            return updatedString
+            return "{ $updatedString }"
         }
 
         fun formatDate(inputDate: String, dateFormatString: String): String? {
