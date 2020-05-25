@@ -2,7 +2,7 @@ package com.vbstudio.covid19.core.injection.component;
 
 import com.vbstudio.covid19.Covid19Application;
 import com.vbstudio.covid19.core.injection.AppModule;
-import com.vbstudio.covid19.home.HomeViewModel;
+import com.vbstudio.covid19.home.model.HomeViewModel;
 import com.vbstudio.covid19.injector.modules.BuildersModule;
 import com.vbstudio.covid19.injector.modules.BuildersModule_;
 

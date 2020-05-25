@@ -13,7 +13,7 @@ class ApiManager(private val baseRetrofitBuilder: BaseRetrofitBuilder) {
     private val covidApiBlobBaseAddress: String = "https://api.covid19india.org"
 
 
-    fun getNationData(
+    fun getCountryData(
         responseListener: ResponseListener<CountryData?>,
         errorListener: ResponseErrorListener<CountryData?>
     ) {

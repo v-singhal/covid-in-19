@@ -1,4 +1,4 @@
-package com.vbstudio.covid19.home
+package com.vbstudio.covid19.home.ui
 
 import android.os.Bundle
 import com.vbstudio.annotations.DaggerActivity
@@ -13,7 +13,9 @@ class ActivityHome : BaseActivity() {
         setContentView(R.layout.activity_home)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, FragmentHome.newInstance())
+                .replace(R.id.container,
+                    FragmentHome.newInstance()
+                )
                 .commitNow()
         }
     }

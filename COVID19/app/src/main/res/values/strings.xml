@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">COVID19</string>
+    <string name="check_network">Please check your network connectivity</string>
+    <string name="server_error">Oops, an error occoured</string>
 </resources>
