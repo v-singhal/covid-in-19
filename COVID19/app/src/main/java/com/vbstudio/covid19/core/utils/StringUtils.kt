@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 
 class StringUtils {
     companion object {
-        fun formatNumberString(string: String): String {
+        fun formatNumberString(string: String, withDecorator: Boolean): String {
             val commaSplitterLength = 3;
             var commasInserted = 0
             var updatedString = string
@@ -12,7 +12,8 @@ class StringUtils {
                 string.length / commaSplitterLength - (if (string.length % commaSplitterLength == 0) 1 else 0)
 
             while (commasToInsert != 0) {
-                val splitIndex = updatedString.length - (commaSplitterLength * (commasInserted + 1)) - commasInserted;
+                val splitIndex =
+                    updatedString.length - (commaSplitterLength * (commasInserted + 1)) - commasInserted;
                 val stringPart1 = updatedString.substring(
                     0,
                     splitIndex
@@ -26,7 +27,7 @@ class StringUtils {
                 commasInserted++
             }
 
-            return "{ $updatedString }"
+            return if (withDecorator) "{ $updatedString }" else updatedString
         }
 
         fun formatDate(inputDate: String, dateFormatString: String): String? {

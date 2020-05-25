@@ -8,6 +8,11 @@ import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.dao.HomeFeedData
 import com.vbstudio.covid19.home.ui.FragmentHome
 import kotlinx.android.synthetic.main.item_country_aon.view.*
+import kotlinx.android.synthetic.main.item_country_aon.view.tv_active
+import kotlinx.android.synthetic.main.item_country_aon.view.tv_confirmed
+import kotlinx.android.synthetic.main.item_country_aon.view.tv_deceased
+import kotlinx.android.synthetic.main.item_country_aon.view.tv_recovered
+import kotlinx.android.synthetic.main.item_state_aon.view.*
 
 class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -49,11 +54,26 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         R.layout.item_country_aon
     ) {
         override fun onBind(data: HomeFeedData?) {
-            itemView.tv_confirmed.text = StringUtils.formatNumberString(data?.confirmed ?: "---")
-            itemView.tv_active.text = StringUtils.formatNumberString(data?.active ?: "---")
-            itemView.tv_recovered.text = StringUtils.formatNumberString(data?.recovered ?: "---")
-            itemView.tv_deceased.text = StringUtils.formatNumberString(data?.deaths ?: "---")
-            itemView.tv_data_timestamp.text = StringUtils.formatDate(data?.lastupdatedtime ?: "---", "dd/MM/yyyy hh:mm:ss")
+            itemView.tv_confirmed.text = StringUtils.formatNumberString(
+                data?.confirmed ?: "---",
+                true
+            )
+            itemView.tv_active.text = StringUtils.formatNumberString(
+                data?.active ?: "---",
+                true
+            )
+            itemView.tv_recovered.text = StringUtils.formatNumberString(
+                data?.recovered ?: "---",
+                true
+            )
+            itemView.tv_deceased.text = StringUtils.formatNumberString(
+                data?.deaths ?: "---",
+                true
+            )
+            itemView.tv_data_timestamp.text = StringUtils.formatDate(
+                data?.lastupdatedtime ?: "---",
+                "dd/MM/yyyy hh:mm:ss"
+            )
         }
     }
 
@@ -65,7 +85,23 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         R.layout.item_state_aon
     ) {
         override fun onBind(data: HomeFeedData?) {
-
+            itemView.tv_state_name.text = """- ${data?.state}"""
+            itemView.tv_confirmed.text = StringUtils.formatNumberString(
+                data?.confirmed ?: "---",
+                false
+            )
+            itemView.tv_active.text = StringUtils.formatNumberString(
+                data?.active ?: "---",
+                false
+            )
+            itemView.tv_recovered.text = StringUtils.formatNumberString(
+                data?.recovered ?: "---",
+                false
+            )
+            itemView.tv_deceased.text = StringUtils.formatNumberString(
+                data?.deaths ?: "---",
+                false
+            )
         }
     }
 }
