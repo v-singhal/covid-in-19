@@ -2,4 +2,8 @@
     <string name="app_name">COVID19</string>
     <string name="check_network">Please check your network connectivity</string>
     <string name="server_error">Oops, an error occoured</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="active">Active</string>
+    <string name="recovered">Recovered</string>
+    <string name="deceased">Deceased</string>
 </resources>

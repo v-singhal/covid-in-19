@@ -25,6 +25,7 @@ class HomeDataModel(private val apiManager: ApiManager) {
                     errorDelegate.invoke(R.string.server_error)
                 }
 
-            })
+            }
+        )
     }
 }

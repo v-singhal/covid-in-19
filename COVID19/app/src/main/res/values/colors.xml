@@ -10,5 +10,6 @@
     <color name="yellow">#EFD477</color>
     <color name="orange">#FB6660</color>
     <color name="pink">#FB2162</color>
+    <color name="grey">#999999</color>
 
 </resources>
