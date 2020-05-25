@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vbstudio.covid19.R
 import com.vbstudio.covid19.core.ui.adapter.BaseViewHolder
+import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.dao.HomeFeedData
 import com.vbstudio.covid19.home.ui.FragmentHome
 import kotlinx.android.synthetic.main.item_country_aon.view.*
@@ -48,11 +49,11 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         R.layout.item_country_aon
     ) {
         override fun onBind(data: HomeFeedData?) {
-            itemView.tv_confirmed.text = data?.confirmed ?: "---"
-            itemView.tv_active.text = data?.active ?: "---"
-            itemView.tv_recovered.text = data?.recovered ?: "---"
-            itemView.tv_deceased.text = data?.deaths ?: "---"
-            itemView.tv_data_timestamp.text = data?.lastupdatedtime ?: "---"
+            itemView.tv_confirmed.text = StringUtils.formatNumberString(data?.confirmed ?: "---")
+            itemView.tv_active.text = StringUtils.formatNumberString(data?.active ?: "---")
+            itemView.tv_recovered.text = StringUtils.formatNumberString(data?.recovered ?: "---")
+            itemView.tv_deceased.text = StringUtils.formatNumberString(data?.deaths ?: "---")
+            itemView.tv_data_timestamp.text = StringUtils.formatDate(data?.lastupdatedtime ?: "---", "dd/MM/yyyy hh:mm:ss")
         }
     }
 
