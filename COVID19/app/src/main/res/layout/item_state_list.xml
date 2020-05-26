@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,8 +8,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="8dp"
-        android:padding="@dimen/padding_small">
+        android:paddingLeft="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_large"
+        android:background="@color/uberDarkGreen"
+        app:elevation="8dp">
 
         <com.vbstudio.covid19.core.ui.TextViewBold
             android:id="@+id/tv_state_name"
@@ -41,7 +44,9 @@
                 android:id="@+id/tv_label_confirmed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="@string/confirmed"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/text_small" />
@@ -69,7 +74,9 @@
                 android:id="@+id/tv_label_active"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="@string/active"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/text_small" />
@@ -97,7 +104,9 @@
                 android:id="@+id/tv_label_recovered"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="@string/recovered"
                 android:textColor="@color/green"
                 android:textSize="@dimen/text_small" />
@@ -125,7 +134,9 @@
                 android:id="@+id/tv_label_deceased"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="@string/deceased"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/text_small" />
