@@ -1,11 +1,11 @@
 package com.vbstudio.covid19.home.dao
 
 import android.os.Parcelable
-import com.vbstudio.covid19.home.ui.FragmentHome
+import com.vbstudio.covid19.home.adapter.StateListAdapter
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class HomeFeedData(
+data class RegionItemData(
 
     val recovered: String? = null,
 
@@ -27,7 +27,7 @@ data class HomeFeedData(
 
     val lastupdatedtime: String? = null,
 
-    val type: FragmentHome.FeedRowType = FragmentHome.FeedRowType.STATE
+    val type: StateListAdapter.Companion.FeedRowType = StateListAdapter.Companion.FeedRowType.STATE
 ) : Parcelable {
 
     // State Code for total cases in country
@@ -47,9 +47,9 @@ data class HomeFeedData(
         stateLatestData.deaths,
         stateLatestData.lastupdatedtime,
         type = if (stateLatestData.statecode == STATE_CODE_TOTAL)
-            FragmentHome.FeedRowType.COUNTRY
+            StateListAdapter.Companion.FeedRowType.COUNTRY
         else
-            FragmentHome.FeedRowType.STATE
+            StateListAdapter.Companion.FeedRowType.STATE
 
     )
 }
