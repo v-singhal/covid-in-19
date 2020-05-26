@@ -19,4 +19,6 @@
     <dimen name="text_xlarge">24sp</dimen>
     <dimen name="text_xxlarge">28sp</dimen>
 
+    <dimen name="state_field_width">108dp</dimen>
+
 </resources>
