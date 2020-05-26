@@ -73,7 +73,7 @@ class HomeViewModel : ViewModel() {
         );
         addTabData(
             homeDataList,
-            StateListData(stateDataList, HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal),
+            StateListData(stateDataList.subList(1, stateDataList.size-1), HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal),
             HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal
         );
         addTabData(
