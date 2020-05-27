@@ -22,4 +22,10 @@ abstract class BaseActivity: AppCompatActivity(), HasSupportFragmentInjector {
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentInjector
     }
+
+    protected fun hideToolbar() {
+        if (supportActionBar != null) {
+            supportActionBar!!.hide()
+        }
+    }
 }
