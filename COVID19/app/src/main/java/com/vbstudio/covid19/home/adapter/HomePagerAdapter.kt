@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vbstudio.covid19.R
 import com.vbstudio.covid19.core.ui.adapter.BaseViewHolder
-import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.dao.HomeBaseData
 import com.vbstudio.covid19.home.dao.HomeData
 import com.vbstudio.covid19.home.dao.RegionItemData
@@ -65,26 +64,11 @@ class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         override fun onBind(homeData: HomeData?, position: Int) {
             val data = homeData?.regionItemData
-            itemView.tv_confirmed.text = StringUtils.formatNumberString(
-                data?.confirmed ?: "---",
-                true
-            )
-            itemView.tv_active.text = StringUtils.formatNumberString(
-                data?.active ?: "---",
-                true
-            )
-            itemView.tv_recovered.text = StringUtils.formatNumberString(
-                data?.recovered ?: "---",
-                true
-            )
-            itemView.tv_deceased.text = StringUtils.formatNumberString(
-                data?.deaths ?: "---",
-                true
-            )
-            itemView.tv_data_timestamp.text = StringUtils.formatDate(
-                data?.lastupdatedtime ?: "---",
-                "dd/MM/yyyy hh:mm:ss"
-            )
+            itemView.tv_confirmed.text = data?.confirmedForUI ?: "---"
+            itemView.tv_active.text = data?.activeForUI ?: "---"
+            itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
+            itemView.tv_deceased.text = data?.deathsForUI ?: "---"
+            itemView.tv_data_timestamp.text = data?.lastupdatedtime ?: "---"
         }
     }
 

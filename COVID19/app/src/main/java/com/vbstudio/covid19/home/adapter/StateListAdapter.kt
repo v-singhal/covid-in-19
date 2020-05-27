@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vbstudio.covid19.R
 import com.vbstudio.covid19.core.ui.adapter.BaseViewHolder
-import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.dao.RegionItemData
 import kotlinx.android.synthetic.main.item_country_aon.view.*
 import kotlinx.android.synthetic.main.item_country_aon.view.tv_active
@@ -63,26 +62,11 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         R.layout.item_country_aon
     ) {
         override fun onBind(data: RegionItemData?, position: Int) {
-            itemView.tv_confirmed.text = StringUtils.formatNumberString(
-                data?.confirmed ?: "---",
-                true
-            )
-            itemView.tv_active.text = StringUtils.formatNumberString(
-                data?.active ?: "---",
-                true
-            )
-            itemView.tv_recovered.text = StringUtils.formatNumberString(
-                data?.recovered ?: "---",
-                true
-            )
-            itemView.tv_deceased.text = StringUtils.formatNumberString(
-                data?.deaths ?: "---",
-                true
-            )
-            itemView.tv_data_timestamp.text = StringUtils.formatDate(
-                data?.lastupdatedtime ?: "---",
-                "dd/MM/yyyy hh:mm:ss"
-            )
+            itemView.tv_confirmed.text = data?.confirmedForUI ?: "---"
+            itemView.tv_active.text = data?.activeForUI ?: "---"
+            itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
+            itemView.tv_deceased.text = data?.deathsForUI ?: "---"
+            itemView.tv_data_timestamp.text = data?.lastupdatedtime ?: "---"
         }
     }
 
@@ -95,22 +79,10 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         override fun onBind(data: RegionItemData?, position: Int) {
             itemView.tv_state_name.text = data?.state
-            itemView.tv_confirmed.text = StringUtils.formatNumberString(
-                data?.confirmed ?: "---",
-                false
-            )
-            itemView.tv_active.text = StringUtils.formatNumberString(
-                data?.active ?: "---",
-                false
-            )
-            itemView.tv_recovered.text = StringUtils.formatNumberString(
-                data?.recovered ?: "---",
-                false
-            )
-            itemView.tv_deceased.text = StringUtils.formatNumberString(
-                data?.deaths ?: "---",
-                false
-            )
+            itemView.tv_confirmed.text = data?.confirmedForUI ?: "---"
+            itemView.tv_active.text = data?.activeForUI ?: "---"
+            itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
+            itemView.tv_deceased.text = data?.deathsForUI ?: "---"
             itemView.setBackgroundResource(if (position % 2 == 0) R.color.colorPrimaryDark else R.color.mediumGreen)
         }
     }

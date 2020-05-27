@@ -1,6 +1,7 @@
 package com.vbstudio.covid19.home.dao
 
 import android.os.Parcelable
+import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.adapter.StateListAdapter
 import kotlinx.android.parcel.Parcelize
 
@@ -27,12 +28,34 @@ data class RegionItemData(
 
     val lastupdatedtime: String? = null,
 
+    val recoveredForUI: String? = null,
+
+    val activeForUI: String? = null,
+
+    val confirmedForUI: String? = null,
+
+    val deathsForUI: String? = null,
+
     val type: StateListAdapter.Companion.FeedRowType = StateListAdapter.Companion.FeedRowType.STATE
 ) : Parcelable {
 
     // State Code for total cases in country
     companion object {
         val STATE_CODE_TOTAL = "TT"
+
+        private fun formatNumbers(inputString: String?, statecode: String?): String {
+            return StringUtils.formatNumberString(
+                inputString ?: "---",
+                getItemType(statecode) == StateListAdapter.Companion.FeedRowType.COUNTRY
+            )
+        }
+
+        private fun getItemType(statecode: String?): StateListAdapter.Companion.FeedRowType {
+            return if (statecode == STATE_CODE_TOTAL)
+                StateListAdapter.Companion.FeedRowType.COUNTRY
+            else
+                StateListAdapter.Companion.FeedRowType.STATE
+        }
     }
 
     constructor(stateLatestData: StateLatestData) : this(
@@ -46,10 +69,11 @@ data class RegionItemData(
         stateLatestData.confirmed,
         stateLatestData.deaths,
         stateLatestData.lastupdatedtime,
-        type = if (stateLatestData.statecode == STATE_CODE_TOTAL)
-            StateListAdapter.Companion.FeedRowType.COUNTRY
-        else
-            StateListAdapter.Companion.FeedRowType.STATE
+        formatNumbers(stateLatestData.recovered, stateLatestData.statecode),
+        formatNumbers(stateLatestData.active, stateLatestData.statecode),
+        formatNumbers(stateLatestData.confirmed, stateLatestData.statecode),
+        formatNumbers(stateLatestData.deaths, stateLatestData.statecode),
+        type = getItemType(stateLatestData.statecode)
 
     )
 }
