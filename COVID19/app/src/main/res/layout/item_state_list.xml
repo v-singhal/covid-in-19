@@ -12,7 +12,7 @@
         android:paddingTop="@dimen/padding_large"
         android:paddingRight="@dimen/padding_small"
         android:paddingBottom="@dimen/padding_large"
-        android:background="@color/uberDarkGreen"
+        android:background="@color/stateHeaderBg"
         app:elevation="8dp">
 
         <com.vbstudio.covid19.core.ui.TextViewBold
@@ -23,7 +23,7 @@
             android:maxWidth="108dp"
             android:padding="@dimen/padding_small"
             android:text="@string/state"
-            android:textColor="@color/grey"
+            android:textColor="@color/stateTitle"
             android:textSize="@dimen/text_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="@string/confirmed"
-                android:textColor="@color/pink"
+                android:textColor="@color/confirmedCase"
                 android:textSize="@dimen/text_small" />
 
             <View
@@ -56,7 +56,7 @@
                 android:layout_height="0.3dp"
                 android:layout_marginTop="@dimen/margin_mini"
                 android:layout_marginBottom="@dimen/margin_mini"
-                android:background="@color/pink" />
+                android:background="@color/confirmedCase" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="@string/active"
-                android:textColor="@color/orange"
+                android:textColor="@color/activeCase"
                 android:textSize="@dimen/text_small" />
 
             <View
@@ -86,7 +86,7 @@
                 android:layout_height="0.3dp"
                 android:layout_marginTop="@dimen/margin_mini"
                 android:layout_marginBottom="@dimen/margin_mini"
-                android:background="@color/orange" />
+                android:background="@color/activeCase" />
         </LinearLayout>
 
         <LinearLayout
@@ -108,7 +108,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="@string/recovered"
-                android:textColor="@color/green"
+                android:textColor="@color/recoveredCase"
                 android:textSize="@dimen/text_small" />
 
             <View
@@ -116,7 +116,7 @@
                 android:layout_height="0.3dp"
                 android:layout_marginTop="@dimen/margin_mini"
                 android:layout_marginBottom="@dimen/margin_mini"
-                android:background="@color/green" />
+                android:background="@color/recoveredCase" />
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +138,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="@string/deceased"
-                android:textColor="@color/grey"
+                android:textColor="@color/deceasedCase"
                 android:textSize="@dimen/text_small" />
 
             <View
@@ -146,7 +146,7 @@
                 android:layout_height="0.3dp"
                 android:layout_marginTop="@dimen/margin_mini"
                 android:layout_marginBottom="@dimen/margin_mini"
-                android:background="@color/grey" />
+                android:background="@color/deceasedCase" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

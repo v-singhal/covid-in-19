@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    App theme-->
     <color name="colorPrimary">@color/green</color>
     <color name="colorPrimaryDark">@color/darkGreen</color>
     <color name="colorAccent">@color/yellow</color>
 
-    <!--Color pallet-->
+    <!--    View theme-->
+    <color name="confirmedCase">@color/pink</color>
+    <color name="activeCase">@color/orange</color>
+    <color name="recoveredCase">@color/green</color>
+    <color name="deceasedCase">@color/grey</color>
+    <color name="dataTimestamp">@color/grey</color>
+    <color name="stateTitle">@color/grey</color>
+    <color name="stateHeaderBg">@color/uberDarkGreen</color>
+    <color name="stateRowBg">@color/darkGreen</color>
+    <color name="stateRowAltBg">@color/mediumGreen</color>
+
+    <!--    BottomNav theme-->
+    <color name="colorPrimaryBottomNav">@color/uberDarkGreen</color>
+    <color name="colorOnPrimaryBottomNav">@color/green</color>
+
+    <!--Color pallet (Not to be used directly outside this file !!)-->
     <color name="uberDarkGreen">#0A3648</color>
     <color name="darkGreen">#0C4056</color>
     <color name="mediumGreen">#0E4962</color>
     <color name="green">#20BDA1</color>
+
     <color name="uberYellow">#FFC107</color>
     <color name="darkYellow">#D8C06D</color>
     <color name="yellow">#EFD477</color>
+
     <color name="orange">#FB6660</color>
+
     <color name="pink">#FB2162</color>
+
     <color name="grey">#999999</color>
     <color name="darkGrey">#333333</color>
     <color name="white">#FFFFFF</color>

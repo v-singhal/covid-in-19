@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:textColor="@color/pink"
+            android:textColor="@color/confirmedCase"
             android:textSize="@dimen/text_xlarge"
             tools:text="30,00,000" />
 
@@ -31,7 +31,7 @@
             android:layout_width="36dp"
             android:layout_height="0.5dp"
             android:layout_marginBottom="@dimen/margin_small"
-            android:background="@color/pink" />
+            android:background="@color/confirmedCase" />
 
         <com.vbstudio.covid19.core.ui.TextViewMedium
             android:id="@+id/tv_label_confirmed"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/confirmed"
-            android:textColor="@color/pink"
+            android:textColor="@color/confirmedCase"
             android:textSize="@dimen/text_small" />
     </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:textColor="@color/orange"
+            android:textColor="@color/activeCase"
             android:textSize="@dimen/text_xlarge"
             tools:text="40,00,000" />
 
@@ -68,7 +68,7 @@
             android:layout_width="36dp"
             android:layout_height="0.5dp"
             android:layout_marginBottom="@dimen/margin_small"
-            android:background="@color/orange" />
+            android:background="@color/activeCase" />
 
         <com.vbstudio.covid19.core.ui.TextViewMedium
             android:id="@+id/tv_label_active"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/active"
-            android:textColor="@color/orange"
+            android:textColor="@color/activeCase"
             android:textSize="@dimen/text_small" />
     </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:textColor="@color/green"
+            android:textColor="@color/recoveredCase"
             android:textSize="@dimen/text_xlarge"
             tools:text="50,00,000" />
 
@@ -105,7 +105,7 @@
             android:layout_width="36dp"
             android:layout_height="0.5dp"
             android:layout_marginBottom="@dimen/margin_small"
-            android:background="@color/green" />
+            android:background="@color/recoveredCase" />
 
         <com.vbstudio.covid19.core.ui.TextViewMedium
             android:id="@+id/tv_label_recovered"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/recovered"
-            android:textColor="@color/green"
+            android:textColor="@color/recoveredCase"
             android:textSize="@dimen/text_small" />
     </LinearLayout>
 
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:textColor="@color/grey"
+            android:textColor="@color/deceasedCase"
             android:textSize="@dimen/text_xlarge"
             tools:text="10,00,000" />
 
@@ -142,7 +142,7 @@
             android:layout_width="36dp"
             android:layout_height="0.5dp"
             android:layout_marginBottom="@dimen/margin_small"
-            android:background="@color/grey" />
+            android:background="@color/deceasedCase" />
 
         <com.vbstudio.covid19.core.ui.TextViewMedium
             android:id="@+id/tv_label_deceased"
@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/deceased"
-            android:textColor="@color/grey"
+            android:textColor="@color/deceasedCase"
             android:textSize="@dimen/text_small" />
     </LinearLayout>
 
@@ -160,7 +160,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/padding_small"
-        android:textColor="@color/grey"
+        android:textColor="@color/dataTimestamp"
         android:textSize="@dimen/text_small"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
