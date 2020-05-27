@@ -12,7 +12,7 @@
         android:paddingTop="@dimen/padding_large"
         android:paddingRight="@dimen/padding_small"
         android:paddingBottom="@dimen/padding_large"
-        android:background="@color/uberDarkGreen"
+        android:background="@color/stateHeaderBg"
         app:elevation="8dp">
 
         <com.vbstudio.covid19.core.ui.TextViewBold
@@ -23,7 +23,7 @@
             android:maxWidth="108dp"
             android:padding="@dimen/padding_small"
             android:text="@string/state"
-            android:textColor="@color/grey"
+            android:textColor="@color/stateTitle"
             android:textSize="@dimen/text_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

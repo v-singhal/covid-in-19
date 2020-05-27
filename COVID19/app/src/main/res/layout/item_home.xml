@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/padding_small"
-        android:textColor="@color/grey"
+        android:textColor="@color/dataTimestamp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="@dimen/text_small"
         app:layout_constraintLeft_toLeftOf="parent"

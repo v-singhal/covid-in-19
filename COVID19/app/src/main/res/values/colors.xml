@@ -5,17 +5,22 @@
     <color name="colorPrimaryDark">@color/darkGreen</color>
     <color name="colorAccent">@color/yellow</color>
 
-    <!--    TextView theme-->
+    <!--    View theme-->
     <color name="confirmedCase">@color/pink</color>
     <color name="activeCase">@color/orange</color>
     <color name="recoveredCase">@color/green</color>
     <color name="deceasedCase">@color/grey</color>
+    <color name="dataTimestamp">@color/grey</color>
+    <color name="stateTitle">@color/grey</color>
+    <color name="stateHeaderBg">@color/uberDarkGreen</color>
+    <color name="stateRowBg">@color/darkGreen</color>
+    <color name="stateRowAltBg">@color/mediumGreen</color>
 
     <!--    BottomNav theme-->
     <color name="colorPrimaryBottomNav">@color/uberDarkGreen</color>
     <color name="colorOnPrimaryBottomNav">@color/green</color>
 
-    <!--Color pallet-->
+    <!--Color pallet (Not to be used directly outside this file !!)-->
     <color name="uberDarkGreen">#0A3648</color>
     <color name="darkGreen">#0C4056</color>
     <color name="mediumGreen">#0E4962</color>
