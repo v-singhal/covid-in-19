@@ -51,10 +51,10 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         override fun onBind(data: RegionItemData?, position: Int) {
             itemView.tv_state_name.text = data?.state
-            itemView.tv_confirmed.text = data?.confirmed ?: "---"
-            itemView.tv_active.text = data?.active ?: "---"
-            itemView.tv_recovered.text = data?.recovered ?: "---"
-            itemView.tv_deceased.text = data?.deaths ?: "---"
+            itemView.tv_confirmed.text = data?.confirmedForUI ?: "---"
+            itemView.tv_active.text = data?.activeForUI ?: "---"
+            itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
+            itemView.tv_deceased.text = data?.deathsForUI ?: "---"
             itemView.setBackgroundResource(if (position % 2 != 0) R.color.colorPrimaryDark else R.color.mediumGreen)
         }
     }
