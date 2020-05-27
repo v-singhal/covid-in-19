@@ -7,6 +7,11 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.vbstudio.covid19"
         minSdkVersion 16
@@ -25,18 +30,40 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
 
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            try {
+                storeFile file(project.rootDir.path + '/key-and-encryption-for-bundles/covid19')
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+                storePassword KEYSTORE_PASSWORD
+                v1SigningEnabled true
+                v2SigningEnabled true
+            }
+            catch (ex) {
+                ex.printStackTrace()
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD.")
+            }
         }
     }
 
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
