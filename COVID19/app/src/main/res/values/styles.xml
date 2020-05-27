@@ -10,8 +10,8 @@
 
     <style name="BottomNavStyle" parent="Theme.MaterialComponents">
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
-        <item name="colorPrimary">@color/uberDarkGreen</item>
-        <item name="colorOnPrimary">@color/uberYellow</item>
+        <item name="colorPrimary">@color/colorPrimaryBottomNav</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryBottomNav</item>
         <item name="fontFamily">@font/montserrat_regular</item>
 
     </style>
