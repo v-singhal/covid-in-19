@@ -5,13 +5,16 @@
     <color name="colorAccent">@color/yellow</color>
 
     <!--Color pallet-->
+    <color name="uberDarkGreen">#0A3648</color>
     <color name="darkGreen">#0C4056</color>
     <color name="mediumGreen">#0E4962</color>
     <color name="green">#20BDA1</color>
+    <color name="darkYellow">#D8C06D</color>
     <color name="yellow">#EFD477</color>
     <color name="orange">#FB6660</color>
     <color name="pink">#FB2162</color>
     <color name="grey">#999999</color>
+    <color name="darkGrey">#333333</color>
     <color name="white">#FFFFFF</color>
 
 </resources>

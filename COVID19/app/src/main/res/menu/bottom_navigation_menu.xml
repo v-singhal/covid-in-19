@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_india"
+        android:title="@string/menu_home" />
+    <item
+        android:id="@+id/state_list"
+        android:enabled="true"
+        android:icon="@drawable/ic_states"
+        android:title="@string/menu_state" />
+    <item
+        android:id="@+id/resources"
+        android:enabled="true"
+        android:icon="@drawable/ic_info_outline"
+        android:title="@string/menu_resources" />
+</menu>

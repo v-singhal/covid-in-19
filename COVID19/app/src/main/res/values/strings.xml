@@ -7,4 +7,7 @@
     <string name="active">Active</string>
     <string name="recovered">Recovered</string>
     <string name="deceased">Deceased</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_state">States</string>
+    <string name="menu_resources">Resources</string>
 </resources>
