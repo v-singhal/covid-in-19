@@ -10,17 +10,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vbstudio.annotations.DaggerFragment
 import com.vbstudio.covid19.R
-import com.vbstudio.covid19.home.dao.HomeData
+import com.vbstudio.covid19.home.dao.ResourceListData
 import com.vbstudio.covid19.home.model.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 @DaggerFragment
-class FragmentHome : Fragment() {
+class FragmentResources : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
 
     companion object {
-        fun newInstance() = FragmentHome()
+        fun newInstance() = FragmentResources()
     }
 
     override fun onCreateView(
@@ -28,37 +27,32 @@ class FragmentHome : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_resource, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        getHomeData()
+        getResourceListData()
     }
 
-    private fun getHomeData() {
-        viewModel.homeTabLiveData.observe(viewLifecycleOwner, Observer {
-            updateHomeData(it)
+    private fun getResourceListData() {
+        viewModel.resourceTabLiveData.observe(viewLifecycleOwner, Observer {
+            updateStateListData(it)
         })
         viewModel.dataErrorLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(this@FragmentHome.context, it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@FragmentResources.context, it, Toast.LENGTH_SHORT).show()
         })
     }
 
-    private fun updateHomeData(homeData: HomeData) {
-        // TODO: Observe HomeData only
-         updateUI(homeData)
+    private fun updateStateListData(resourceListData: ResourceListData?) {
+        // TODO: Observe StateListData only
+        // updateUI(stateListData)
     }
 
-    private fun updateUI(homeData: HomeData?) {
-        val data = homeData?.regionItemData
-        tv_confirmed.text = data?.confirmedForUI ?: "---"
-        tv_active.text = data?.activeForUI ?: "---"
-        tv_recovered.text = data?.recoveredForUI ?: "---"
-        tv_deceased.text = data?.deathsForUI ?: "---"
-        tv_data_timestamp.text = data?.lastupdatedtime ?: "---"
+    private fun updateUI(resourceLisData: ResourceListData?) {
+        // TODO: Update UI
     }
 
 }

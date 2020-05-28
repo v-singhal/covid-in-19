@@ -1,5 +1,6 @@
 package com.vbstudio.covid19.home.adapter
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,12 +10,14 @@ import com.vbstudio.covid19.home.dao.HomeBaseData
 import com.vbstudio.covid19.home.dao.HomeData
 import com.vbstudio.covid19.home.dao.RegionItemData
 import com.vbstudio.covid19.home.dao.StateListData
+import kotlinx.android.synthetic.main.fragment_states.view.*
 import kotlinx.android.synthetic.main.item_country_aon.view.*
-import kotlinx.android.synthetic.main.item_state_list.view.*
 
 class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var tabDataList: List<HomeBaseData>? = null
+
+    private lateinit var animationItemRevealCallback: (view: View?) -> Unit
 
     companion object {
         enum class PageType {
@@ -45,6 +48,14 @@ class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         } else if (holder is ResourcesViewHolder) {
             holder.onBind(tabDataList?.get(position), position)
         }
+
+        animateItemReveal(holder.itemView);
+    }
+
+    private fun animateItemReveal(view: View?) {
+        animationItemRevealCallback?.let {
+            animationItemRevealCallback.invoke(view)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -56,11 +67,15 @@ class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addItemRevealCallback(animationItemRevealCallback: ((view: View?) -> Unit)) {
+        this.animationItemRevealCallback = animationItemRevealCallback
+    }
+
     class HomeViewHolder(
         parent: ViewGroup
     ) : BaseViewHolder<HomeData>(
         parent,
-        R.layout.item_home
+        R.layout.fragment_home
     ) {
         override fun onBind(homeData: HomeData?, position: Int) {
             val data = homeData?.regionItemData
@@ -77,7 +92,7 @@ class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent: ViewGroup
     ) : BaseViewHolder<StateListData>(
         parent,
-        R.layout.item_state_list
+        R.layout.fragment_states
     ) {
         private val homeAdapter = StateListAdapter()
 
@@ -103,7 +118,7 @@ class HomePagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent: ViewGroup
     ) : BaseViewHolder<Any>(
         parent,
-        R.layout.item_resource_list
+        R.layout.fragment_resource
     ) {
         override fun onBind(data: Any?, position: Int) {
 

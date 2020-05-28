@@ -2,11 +2,11 @@ package com.vbstudio.covid19.home.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.vbstudio.covid19.Covid19Application
 import com.vbstudio.covid19.home.adapter.HomePagerAdapter
 import com.vbstudio.covid19.home.dao.*
 import com.vbstudio.covid19.home.viewModel.HomeDataModel
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,14 +17,18 @@ class HomeViewModel : ViewModel() {
 
     // LiveData used internally
     private val _dataErrorLiveData: MutableLiveData<Int> = MutableLiveData()
-    private val _homeLiveData: MutableLiveData<List<HomeBaseData>> = MutableLiveData()
+    private val _homeTabLiveData: MutableLiveData<HomeData> = MutableLiveData()
+    private val _stateTabLiveData: MutableLiveData<StateListData> = MutableLiveData()
+    private val _resourceTabLiveData: MutableLiveData<ResourceListData> = MutableLiveData()
 
     // Local Data used internally
     private val _homeFeedMap: HashMap<String, StateLatestData> = hashMapOf()
 
     // LiveData for public access
     val dataErrorLiveData = _dataErrorLiveData
-    val homeLiveData = _homeLiveData
+    val homeTabLiveData = _homeTabLiveData
+    val stateTabLiveData = _stateTabLiveData
+    val resourceTabLiveData = _resourceTabLiveData
 
     init {
         Covid19Application.getAppComponent().inject(this)
@@ -32,20 +36,16 @@ class HomeViewModel : ViewModel() {
 
     fun getHomeData() {
         homeDataModel.getHomeData({
-            viewModelScope.launch { processResponse(it) }
+            GlobalScope.launch { processResponse(it) }
         }, { stringResId ->
             dataErrorLiveData.postValue(stringResId)
         })
     }
 
     private suspend fun processResponse(countryData: CountryData?) {
-        viewModelScope.launch {
+        GlobalScope.launch {
             populateHomeFeedMap(countryData)
-        }.run {
-            // Create master list for recyclerview
-            viewModelScope.launch {
-                updateHomeLiveData();
-            }
+            updateHomeLiveData();
         }
     }
 
@@ -63,26 +63,25 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun updateHomeLiveData() {
-        val homeDataList = mutableListOf<HomeBaseData>()
         val stateDataList = getStateDataList()
 
-        addTabData(
-            homeDataList,
-            HomeData(stateDataList[0], HomePagerAdapter.Companion.PageType.HOME.ordinal),
-            HomePagerAdapter.Companion.PageType.HOME.ordinal
-        );
-        addTabData(
-            homeDataList,
-            StateListData(stateDataList.subList(1, stateDataList.size-1), HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal),
-            HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal
-        );
-        addTabData(
-            homeDataList,
-            ResourceListData(HomePagerAdapter.Companion.PageType.RESOURCE_LIST.ordinal),
-            HomePagerAdapter.Companion.PageType.RESOURCE_LIST.ordinal
-        );
-
-        _homeLiveData.postValue(homeDataList)
+        _homeTabLiveData.postValue(
+            HomeData(
+                stateDataList[0],
+                HomePagerAdapter.Companion.PageType.HOME.ordinal
+            )
+        )
+        _stateTabLiveData.postValue(
+            StateListData(
+                stateDataList.subList(1, stateDataList.size - 1),
+                HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal
+            )
+        )
+        _resourceTabLiveData.postValue(
+            ResourceListData(
+                HomePagerAdapter.Companion.PageType.RESOURCE_LIST.ordinal
+            )
+        )
     }
 
     private fun getStateDataList(): MutableList<RegionItemData> {
@@ -93,13 +92,5 @@ class HomeViewModel : ViewModel() {
         stateDataList.sortByDescending { it.confirmed?.toInt() }
 
         return stateDataList
-    }
-
-    private fun addTabData(
-        homeDataList: MutableList<HomeBaseData>,
-        homeDataToInsert: HomeBaseData,
-        dataPosition: Int
-    ) {
-        homeDataList.add(dataPosition, homeDataToInsert)
     }
 }
