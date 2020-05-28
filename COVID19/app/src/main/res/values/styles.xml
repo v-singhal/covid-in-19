@@ -13,7 +13,6 @@
         <item name="colorPrimary">@color/colorPrimaryBottomNav</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryBottomNav</item>
         <item name="fontFamily">@font/montserrat_regular</item>
-
     </style>
 
 </resources>
