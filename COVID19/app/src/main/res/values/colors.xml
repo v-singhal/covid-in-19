@@ -17,8 +17,8 @@
     <color name="stateRowAltBg">@color/mediumGreen</color>
 
     <!--    BottomNav theme-->
-    <color name="colorPrimaryBottomNav">@color/uberDarkGreen</color>
-    <color name="colorOnPrimaryBottomNav">@color/green</color>
+    <color name="colorPrimaryBottomNav">@color/mediumGreen</color>
+    <color name="colorOnPrimaryBottomNav">@color/white</color>
 
     <!--Color pallet (Not to be used directly outside this file !!)-->
     <color name="uberDarkGreen">#0A3648</color>

@@ -8,11 +8,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/stateHeaderBg"
         android:paddingLeft="@dimen/padding_small"
         android:paddingTop="@dimen/padding_large"
         android:paddingRight="@dimen/padding_small"
         android:paddingBottom="@dimen/padding_large"
-        android:background="@color/stateHeaderBg"
+        android:visibility="gone"
         app:elevation="8dp">
 
         <com.vbstudio.covid19.core.ui.TextViewBold

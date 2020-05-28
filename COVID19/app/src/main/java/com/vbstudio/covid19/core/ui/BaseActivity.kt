@@ -24,8 +24,8 @@ abstract class BaseActivity: AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     protected fun hideToolbar() {
-        if (supportActionBar != null) {
-            supportActionBar!!.hide()
-        }
+//        if (supportActionBar != null) {
+//            supportActionBar!!.hide()
+//        }
     }
 }
