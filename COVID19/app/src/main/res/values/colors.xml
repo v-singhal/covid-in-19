@@ -4,6 +4,7 @@
     <color name="colorPrimary">@color/green</color>
     <color name="colorPrimaryDark">@color/darkGreen</color>
     <color name="colorAccent">@color/yellow</color>
+    <color name="toolbarBgColor">@color/uberYellow</color>
 
     <!--    View theme-->
     <color name="confirmedCase">@color/pink</color>

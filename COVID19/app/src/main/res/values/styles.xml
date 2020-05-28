@@ -6,6 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/AppSupportActionBar</item>
+        <item name="android:actionBarStyle">@style/AppSupportActionBar</item>
+    </style>
+
+    <style name="AppSupportActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="background">@color/toolbarBgColor</item>
+        <item name="android:background">@color/toolbarBgColor</item>
     </style>
 
     <style name="BottomNavStyle" parent="Theme.MaterialComponents">
@@ -14,5 +23,4 @@
         <item name="colorOnPrimary">@color/colorOnPrimaryBottomNav</item>
         <item name="fontFamily">@font/montserrat_regular</item>
     </style>
-
 </resources>

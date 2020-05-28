@@ -12,12 +12,13 @@ class ActivityHome : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_home)
-        hideToolbar()
+        loadFragment(savedInstanceState)
+    }
+
+    private fun loadFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container,
-                    FragmentHome.newInstance()
-                )
+                .replace(R.id.container, FragmentHome.newInstance())
                 .commitNow()
         }
     }
