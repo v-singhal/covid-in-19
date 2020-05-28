@@ -5,9 +5,7 @@ import android.text.TextUtils
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.vbstudio.covid19.Covid19Application
-import okhttp3.Cache
-import okhttp3.Dispatcher
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,7 +19,7 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
     val CACHE_SIZE = 5 * 1024 * 1024.toLong()
     val CACHE_DIR = "NetworkCache"
 
-    private lateinit var dispatcher: Dispatcher
+    private var dispatcher: Dispatcher? = null
     private var retrofitBuilder: Retrofit.Builder
     private var okHttpBuilder: OkHttpClient.Builder
 
@@ -33,31 +31,34 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
 
         // Setup OkHttpBuilder
         okHttpBuilder = OkHttpClient.Builder()
-        okHttpBuilder.addInterceptor { chain ->
-            val builder = chain.request().newBuilder()
-            var url = chain.request().url().toString()
-            try {
-                url = Uri.parse(URLDecoder.decode(url, "UTF-8"))
-                    .buildUpon()
-                    .build().toString()
-            } catch (e: UnsupportedEncodingException) {
-                e.printStackTrace()
-            }
-            builder.url(url)
-            for ((key, value) in getAuthenticationHeaders().entries) {
-                value?.let { valueIt ->
-                    if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(valueIt)) {
-                        if (chain.request().headers()[key] == null) {
-                            builder.header(key, valueIt)
-                        }
-                    }
-                }
-            }
-            chain.proceed(builder.build())
-        }
+        okHttpBuilder.addInterceptor { chain -> interceptApiCall(chain) }
 
         addCacheSupport()
         addLoggingSupport()
+    }
+
+    private fun interceptApiCall(chain: Interceptor.Chain): Response {
+        val builder = chain.request().newBuilder()
+        var url = chain.request().url().toString()
+        try {
+            val uri = Uri.parse(URLDecoder.decode(url, "UTF-8"))
+                .buildUpon()
+                .build()
+            url = uri.toString()
+        } catch (e: UnsupportedEncodingException) {
+            e.printStackTrace()
+        }
+        builder.url(url)
+        for ((key, value) in getAuthenticationHeaders().entries) {
+            value?.let { valueIt ->
+                if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(valueIt)) {
+                    if (chain.request().headers()[key] == null) {
+                        builder.header(key, valueIt)
+                    }
+                }
+            }
+        }
+        return chain.proceed(builder.build())
     }
 
     private fun getClient(): OkHttpClient {
@@ -72,11 +73,7 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
     }
 
     private fun addCacheSupport() {
-        val cache = Cache(
-            File(
-                application.getCacheDir().getAbsolutePath(), CACHE_DIR
-            ), CACHE_SIZE
-        )
+        val cache = Cache(File(application.cacheDir.absolutePath, CACHE_DIR), CACHE_SIZE)
         okHttpBuilder.cache(cache)
     }
 
@@ -91,5 +88,16 @@ class BaseRetrofitBuilder(private val application: Covid19Application) {
             .baseUrl("$baseUrl/")
             .client(getClient())
             .build()
+    }
+
+    fun isApiCallInProgress(apiTag: String): Boolean {
+        dispatcher?.let { dispatcher ->
+            val calls: MutableList<Call> = mutableListOf()
+            calls.addAll(dispatcher.runningCalls())
+            calls.addAll(dispatcher.queuedCalls())
+
+            return calls.any { it.request().tag(apiTag.javaClass) == apiTag }
+        }
+        return false
     }
 }

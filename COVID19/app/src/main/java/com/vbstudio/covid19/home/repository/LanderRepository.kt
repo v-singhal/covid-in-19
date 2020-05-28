@@ -1,22 +1,22 @@
-package com.vbstudio.covid19.home.model
+package com.vbstudio.covid19.home.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.vbstudio.covid19.Covid19Application
-import com.vbstudio.covid19.home.adapter.HomePagerAdapter
+import com.vbstudio.covid19.core.networking.ApiManager
+import com.vbstudio.covid19.core.networking.interfaces.ResponseErrorListener
+import com.vbstudio.covid19.core.networking.interfaces.ResponseListener
+import com.vbstudio.covid19.core.repository.AppRepository
 import com.vbstudio.covid19.home.dao.*
-import com.vbstudio.covid19.home.viewModel.HomeDataModel
+import com.vbstudio.covid19.home.viewModel.ViewModelLander
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
 
-    @Inject
-    lateinit var homeDataModel: HomeDataModel
+    private val HOME_CALL = "HomeApi"
 
     // LiveData used internally
-    private val _dataErrorLiveData: MutableLiveData<Int> = MutableLiveData()
+    // private val _dataErrorLiveData: MutableLiveData<Int> = MutableLiveData()
     private val _homeTabLiveData: MutableLiveData<HomeData> = MutableLiveData()
     private val _stateTabLiveData: MutableLiveData<StateListData> = MutableLiveData()
     private val _resourceTabLiveData: MutableLiveData<ResourceListData> = MutableLiveData()
@@ -25,21 +25,52 @@ class HomeViewModel : ViewModel() {
     private val _homeFeedMap: HashMap<String, StateLatestData> = hashMapOf()
 
     // LiveData for public access
-    val dataErrorLiveData = _dataErrorLiveData
+    // val dataErrorLiveData = _dataErrorLiveData
     val homeTabLiveData = _homeTabLiveData
     val stateTabLiveData = _stateTabLiveData
     val resourceTabLiveData = _resourceTabLiveData
 
-    init {
-        Covid19Application.getAppComponent().inject(this)
+    fun getHomeData(): LiveData<HomeData> {
+        if (!isValidData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)) {
+            getHomeDataFromApi()
+        }
+        return homeTabLiveData
     }
 
-    fun getHomeData() {
-        homeDataModel.getHomeData({
-            GlobalScope.launch { processResponse(it) }
-        }, { stringResId ->
-            dataErrorLiveData.postValue(stringResId)
-        })
+    fun getStateData(): LiveData<StateListData> {
+        if (!isValidData(homeTabLiveData)) {
+            getHomeDataFromApi()
+        }
+        return stateTabLiveData
+    }
+
+    fun getResourcesData(): LiveData<ResourceListData> {
+        if (!isValidData(homeTabLiveData)) {
+            getHomeDataFromApi()
+        }
+        return resourceTabLiveData
+    }
+
+    private fun getHomeDataFromApi() {
+        apiManager.getCountryData(
+            object : ResponseListener<CountryData?> {
+                override fun onResponse(response: CountryData?) {
+                    GlobalScope.launch { processResponse(response) }
+                }
+
+            },
+            object : ResponseErrorListener<CountryData?> {
+                override fun onError(t: Throwable?) {
+                    // dataErrorLiveData.postValue(R.string.check_network)
+                }
+
+                override fun onError(response: CountryData?, statusCode: Int) {
+                    // dataErrorLiveData.postValue(R.string.server_error)
+                }
+
+            },
+            HOME_CALL
+        )
     }
 
     private suspend fun processResponse(countryData: CountryData?) {
@@ -68,18 +99,18 @@ class HomeViewModel : ViewModel() {
         _homeTabLiveData.postValue(
             HomeData(
                 stateDataList[0],
-                HomePagerAdapter.Companion.PageType.HOME.ordinal
+                ViewModelLander.PageType.HOME.ordinal
             )
         )
         _stateTabLiveData.postValue(
             StateListData(
                 stateDataList.subList(1, stateDataList.size - 1),
-                HomePagerAdapter.Companion.PageType.STATE_LIST.ordinal
+                ViewModelLander.PageType.STATE_LIST.ordinal
             )
         )
         _resourceTabLiveData.postValue(
             ResourceListData(
-                HomePagerAdapter.Companion.PageType.RESOURCE_LIST.ordinal
+                ViewModelLander.PageType.RESOURCE_LIST.ordinal
             )
         )
     }

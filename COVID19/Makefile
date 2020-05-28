@@ -1,5 +1,5 @@
 APPLICATION_ID = com.vbstudio.covid19
-RUN_COMMAND = adb shell am start -n $(APPLICATION_ID)/$(APPLICATION_ID).home.ui.ActivityHome
+RUN_COMMAND = adb shell am start -n $(APPLICATION_ID)/$(APPLICATION_ID).home.ui.ActivityLander
 
 offline?=true
 variant?=iD

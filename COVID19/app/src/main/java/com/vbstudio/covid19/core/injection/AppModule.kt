@@ -3,7 +3,7 @@ package com.vbstudio.covid19.core.injection
 import com.vbstudio.covid19.Covid19Application
 import com.vbstudio.covid19.core.networking.ApiManager
 import com.vbstudio.covid19.core.networking.BaseRetrofitBuilder
-import com.vbstudio.covid19.home.viewModel.HomeDataModel
+import com.vbstudio.covid19.home.repository.LanderRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -31,7 +31,7 @@ class AppModule(private val application: Covid19Application) {
 
     @Provides
     @Singleton
-    fun provideHomeDataModel(apiManager: ApiManager): HomeDataModel {
-        return HomeDataModel(apiManager)
+    fun provideLanderRepository(apiManager: ApiManager): LanderRepository {
+        return LanderRepository(apiManager)
     }
 }
