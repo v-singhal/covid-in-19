@@ -12,9 +12,9 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin_xlarge"
         android:background="@drawable/state_row_bg"
-        app:elevation="2dp"
         android:maxWidth="312dp"
-        android:padding="@dimen/padding_large">
+        android:padding="@dimen/padding_large"
+        app:elevation="2dp">
 
         <com.vbstudio.covid19.core.ui.TextViewMedium
             android:id="@+id/tv_state_name"
