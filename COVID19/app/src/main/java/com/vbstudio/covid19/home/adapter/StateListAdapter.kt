@@ -55,7 +55,7 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.tv_active.text = data?.activeForUI ?: "---"
             itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
             itemView.tv_deceased.text = data?.deathsForUI ?: "---"
-            itemView.setBackgroundResource(if (position % 2 != 0) R.color.stateRowBg else R.color.stateRowAltBg)
+//            itemView.container_stats.setBackgroundResource(if (position % 2 != 0) R.drawable.state_row_bg_alt else R.drawable.state_row_bg)
         }
     }
 }

@@ -1,79 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding_small">
+    android:layout_height="wrap_content">
 
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_state_name"
-        android:layout_width="@dimen/state_field_width"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:maxWidth="108dp"
-        android:padding="@dimen/padding_small"
-        android:textColor="@color/stateTitle"
-        android:textSize="@dimen/text_small"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Maharashtra" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_stats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_xlarge"
+        android:background="@drawable/state_row_bg"
+        android:maxWidth="312dp"
+        android:padding="@dimen/padding_large"
+        app:elevation="2dp">
+
+        <com.vbstudio.covid19.core.ui.TextViewMedium
+            android:id="@+id/tv_state_name"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxWidth="108dp"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/stateTitle"
+            android:textSize="@dimen/text_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Delhi" />
+
+        <LinearLayout
+            android:id="@+id/container_confirmed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/container_recovered"
+            app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
+            app:layout_constraintRight_toLeftOf="@+id/container_active"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.vbstudio.covid19.core.ui.TextViewMedium
+                android:id="@+id/tv_confirmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/confirmedCase"
+                android:textSize="@dimen/text_regular"
+                tools:text="30,000" />
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:background="@color/confirmedCase" />
+
+            <com.vbstudio.covid19.core.ui.TextViewRegular
+                android:id="@+id/tv_label_confirmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/confirmed"
+                android:textColor="@color/confirmedCase"
+                android:textSize="@dimen/text_mini" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_active"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/container_deceased"
+            app:layout_constraintLeft_toRightOf="@+id/container_confirmed"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.vbstudio.covid19.core.ui.TextViewMedium
+                android:id="@+id/tv_active"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/activeCase"
+                android:textSize="@dimen/text_regular"
+                tools:text="40,000" />
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:background="@color/activeCase" />
+
+            <com.vbstudio.covid19.core.ui.TextViewRegular
+                android:id="@+id/tv_label_active"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/active"
+                android:textColor="@color/activeCase"
+                android:textSize="@dimen/text_mini" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_recovered"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
+            app:layout_constraintRight_toLeftOf="@+id/container_deceased"
+            app:layout_constraintTop_toBottomOf="@+id/container_confirmed">
+
+            <com.vbstudio.covid19.core.ui.TextViewMedium
+                android:id="@+id/tv_recovered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/recoveredCase"
+                android:textSize="@dimen/text_regular"
+                tools:text="50,000" />
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:background="@color/recoveredCase" />
+
+            <com.vbstudio.covid19.core.ui.TextViewRegular
+                android:id="@+id/tv_label_recovered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/recovered"
+                android:textColor="@color/recoveredCase"
+                android:textSize="@dimen/text_mini" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_deceased"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/container_recovered"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_active">
+
+            <com.vbstudio.covid19.core.ui.TextViewMedium
+                android:id="@+id/tv_deceased"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/deceasedCase"
+                android:textSize="@dimen/text_regular"
+                tools:text="10,000" />
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:background="@color/deceasedCase" />
 
 
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_confirmed"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:textColor="@color/confirmedCase"
-        android:textSize="@dimen/text_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
-        app:layout_constraintRight_toLeftOf="@+id/tv_active"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="30,000" />
+            <com.vbstudio.covid19.core.ui.TextViewRegular
+                android:id="@+id/tv_label_deceased"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/deceased"
+                android:textColor="@color/deceasedCase"
+                android:textSize="@dimen/text_mini" />
+        </LinearLayout>
 
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_active"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:textColor="@color/activeCase"
-        android:textSize="@dimen/text_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_confirmed"
-        app:layout_constraintRight_toLeftOf="@+id/tv_recovered"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="40,000" />
-
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_recovered"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:textColor="@color/recoveredCase"
-        android:textSize="@dimen/text_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_active"
-        app:layout_constraintRight_toLeftOf="@+id/tv_deceased"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="50,000" />
-
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_deceased"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:textColor="@color/deceasedCase"
-        android:textSize="@dimen/text_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_recovered"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="10,000" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
