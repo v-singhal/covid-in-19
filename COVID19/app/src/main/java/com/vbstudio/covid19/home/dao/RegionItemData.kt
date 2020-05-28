@@ -61,7 +61,7 @@ data class RegionItemData(
 
         private fun formatTimestamp(inputTimestamp: String?): String {
             return StringUtils.formatDate(
-                inputTimestamp ?: null,
+                inputTimestamp,
                 "dd/MM/yyyy hh:mm:ss"
             )
         }
