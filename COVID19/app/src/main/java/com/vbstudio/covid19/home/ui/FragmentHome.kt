@@ -56,7 +56,7 @@ class FragmentHome : Fragment() {
         tv_active.text = data?.activeForUI ?: "---"
         tv_recovered.text = data?.recoveredForUI ?: "---"
         tv_deceased.text = data?.deathsForUI ?: "---"
-        tv_data_timestamp.text = data?.lastupdatedtime ?: "---"
+        tv_data_timestamp.text = data?.lastupdatedtimeForUI ?: "---"
     }
 
 }

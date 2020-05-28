@@ -30,12 +30,17 @@ class StringUtils {
             return if (withDecorator) "{ $updatedString }" else updatedString
         }
 
-        fun formatDate(inputDate: String, dateFormatString: String): String? {
-            val inputDateFormat = SimpleDateFormat(dateFormatString)
-            val outputDateFormat = SimpleDateFormat("dd MMM, hh:mm aa Z")
-            // 25 May, 12:34 PM IST
+        fun formatDate(inputDate: String?, dateFormatString: String): String {
+            inputDate?.let {
+                val inputDateFormat = SimpleDateFormat(dateFormatString)
+                val outputDateFormat = SimpleDateFormat("dd MMM, hh:mm aa Z")
+                val outputDate = inputDateFormat.parse(inputDate)
 
-            return outputDateFormat.format(inputDateFormat.parse(inputDate))
+                outputDate?.let {
+                    return outputDateFormat.format(it)
+                }
+            }
+            return ""
         }
     }
 }

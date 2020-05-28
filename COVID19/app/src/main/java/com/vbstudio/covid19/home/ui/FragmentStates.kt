@@ -46,6 +46,7 @@ class FragmentStates : Fragment() {
     private fun setupRecyclerView() {
         rvCountryData.layoutManager = LinearLayoutManager(context)
         rvCountryData.adapter = stateListAdapter
+        rvCountryData.setHasFixedSize(true)
     }
 
     private fun getStateListData() {

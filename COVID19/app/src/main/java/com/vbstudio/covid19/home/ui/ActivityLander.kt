@@ -4,18 +4,16 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vbstudio.annotations.DaggerActivity
 import com.vbstudio.covid19.R
 import com.vbstudio.covid19.core.ui.BaseActivity
 import com.vbstudio.covid19.core.utils.AnimationUtils
-import com.vbstudio.covid19.home.dao.HomeData
 import com.vbstudio.covid19.home.viewModel.ViewModelLander
 import kotlinx.android.synthetic.main.activity_lander.*
 
 @DaggerActivity
-class ActivityLander : BaseActivity(), FragmentManager.OnBackStackChangedListener {
+class ActivityLander : BaseActivity() {
 
     private lateinit var viewModelLander: ViewModelLander
 
@@ -30,21 +28,15 @@ class ActivityLander : BaseActivity(), FragmentManager.OnBackStackChangedListene
         setupView(savedInstanceState)
     }
 
-    override fun onBackStackChanged() {
-//        TODO("Not yet implemented")
-    }
-
     private fun setupView(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             viewModelLander = ViewModelProvider(this).get(ViewModelLander::class.java)
             getHomeData()
         }
-        setupFragmentContainer()
+        setupBottomNavigation()
     }
 
-    private fun setupFragmentContainer() {
-        supportFragmentManager.addOnBackStackChangedListener(this)
-
+    private fun setupBottomNavigation() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             switchFragments(item.itemId)
             true
@@ -60,7 +52,6 @@ class ActivityLander : BaseActivity(), FragmentManager.OnBackStackChangedListene
         fragment?.let {
             val fragmentTag: String = fragment.javaClass.simpleName
             fragmentTransaction.replace(R.id.container_nav_fragments, it, fragmentTag)
-            fragmentTransaction.addToBackStack(fragmentTag)
             fragmentTransaction.commit()
             AnimationUtils.revealView(container_nav_fragments)
         }
@@ -85,15 +76,9 @@ class ActivityLander : BaseActivity(), FragmentManager.OnBackStackChangedListene
     }
 
     private fun getHomeData() {
-        viewModelLander.getHomeData().observe(this, Observer {
-            updateViewPager(it)
-        })
+        viewModelLander.getHomeData()
 //        viewModelLander.dataErrorLiveData.observe(this, Observer {
 //            Toast.makeText(this@ActivityLander, it, Toast.LENGTH_SHORT).show()
 //        })
-    }
-
-    private fun updateViewPager(it: HomeData?) {
-
     }
 }
