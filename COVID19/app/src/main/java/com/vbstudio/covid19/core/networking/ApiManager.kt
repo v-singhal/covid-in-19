@@ -15,12 +15,13 @@ class ApiManager(private val baseRetrofitBuilder: BaseRetrofitBuilder) {
 
     fun getCountryData(
         responseListener: ResponseListener<CountryData?>,
-        errorListener: ResponseErrorListener<CountryData?>
+        errorListener: ResponseErrorListener<CountryData?>,
+        tag: String
     ) {
         baseRetrofitBuilder
             .build(covidApiBlobBaseAddress)
             .create(HomeApi::class.java)
-            .getCountryData()
+            .getCountryData(tag)
             .run {
                 enqueue(object : Callback<CountryData?> {
                     override fun onResponse(
@@ -42,5 +43,9 @@ class ApiManager(private val baseRetrofitBuilder: BaseRetrofitBuilder) {
                     }
                 })
             }
+    }
+
+    fun isCountryDataInProgress(tag: String): Boolean {
+        return baseRetrofitBuilder.isApiCallInProgress(tag)
     }
 }

@@ -36,6 +36,8 @@ data class RegionItemData(
 
     val deathsForUI: String? = null,
 
+    val lastupdatedtimeForUI: String? = null,
+
     val type: StateListAdapter.Companion.FeedRowType = StateListAdapter.Companion.FeedRowType.STATE
 ) : Parcelable {
 
@@ -56,6 +58,13 @@ data class RegionItemData(
             else
                 StateListAdapter.Companion.FeedRowType.STATE
         }
+
+        private fun formatTimestamp(inputTimestamp: String?): String {
+            return StringUtils.formatDate(
+                inputTimestamp ?: null,
+                "dd/MM/yyyy hh:mm:ss"
+            )
+        }
     }
 
     constructor(stateLatestData: StateLatestData) : this(
@@ -73,6 +82,7 @@ data class RegionItemData(
         formatNumbers(stateLatestData.active, stateLatestData.statecode),
         formatNumbers(stateLatestData.confirmed, stateLatestData.statecode),
         formatNumbers(stateLatestData.deaths, stateLatestData.statecode),
+        formatTimestamp(stateLatestData.lastupdatedtime),
         type = getItemType(stateLatestData.statecode)
 
     )
