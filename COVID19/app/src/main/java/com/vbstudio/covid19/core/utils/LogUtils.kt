@@ -5,7 +5,9 @@ import android.util.Log
 class LogUtils {
     companion object{
         fun d(logTag: String?, messageString: String?) {
-            Log.d(logTag, messageString)
+            messageString?.let {
+                Log.d(logTag, messageString)
+            }
         }
     }
 }

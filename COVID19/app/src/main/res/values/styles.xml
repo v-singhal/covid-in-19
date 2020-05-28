@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarStyle">@style/AppSupportActionBar</item>
         <item name="android:actionBarStyle">@style/AppSupportActionBar</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
     <style name="AppSupportActionBar" parent="@style/Widget.AppCompat.ActionBar">
