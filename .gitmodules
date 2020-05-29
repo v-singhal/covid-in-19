@@ -1,6 +1,0 @@
-[submodule "COVID19/dagger2-annotation-processor-wrapper"]
-	path = COVID19/dagger2-annotation-processor-wrapper
-	url = git@github.com:v-singhal/dagger2-annotation-processor-wrapper.git
-[submodule "COVID19/dagger2-annotation"]
-	path = COVID19/dagger2-annotation
-	url = git@github.com:v-singhal/dagger2-annotation.git
