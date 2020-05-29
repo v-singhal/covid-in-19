@@ -70,8 +70,8 @@ android {
 
 dependencies {
     // Dagger Annotation Processor
-    implementation project(':annotations')
-    kapt project(':annotationprocessor')
+    implementation project(':dagger2-annotation')
+    kapt project(':dagger2-annotation-processor-wrapper')
 
     // Testing dependencies
     testImplementation 'junit:junit:4.12'
