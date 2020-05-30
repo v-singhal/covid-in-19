@@ -109,8 +109,8 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${dagger_version}"
 
     // Dagger Annotation Processor
-    implementation 'com.github.v-singhal:dagger2-annotation:0.1'
-    kapt 'com.github.v-singhal:dagger2-annotation-processor-wrapper:0.1'
+    implementation 'com.github.v-singhal:dagger2-annotation:0.3'
+    kapt 'com.github.v-singhal:dagger2-annotation-processor-wrapper:0.3'
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.1.0"

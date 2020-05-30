@@ -6,8 +6,7 @@ import com.vbstudio.covid19.home.viewModel.ViewModelHome;
 import com.vbstudio.covid19.home.viewModel.ViewModelLander;
 import com.vbstudio.covid19.home.viewModel.ViewModelResources;
 import com.vbstudio.covid19.home.viewModel.ViewModelStates;
-import com.vbstudio.covid19.injector.modules.BuildersModule;
-import com.vbstudio.covid19.injector.modules.BuildersModule_;
+import com.vbstudio.injector.modules.BuildersModule;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +24,6 @@ import dagger.android.AndroidInjectionModule;
                  */
                 AppModule.class,
                 BuildersModule.class,
-                BuildersModule_.class
         })
 public interface IApplicationComponent {
 

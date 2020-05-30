@@ -1,2 +1,2 @@
 rootProject.name='COVID19'
-include ':app', ':dagger2-annotation', ':dagger2-annotation-processor-wrapper'
+include ':app'
