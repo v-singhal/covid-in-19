@@ -9,6 +9,7 @@ import com.vbstudio.covid19.core.repository.AppRepository
 import com.vbstudio.covid19.home.dao.*
 import com.vbstudio.covid19.home.viewModel.ViewModelLander
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
@@ -26,30 +27,32 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
 
     // LiveData for public access
     // val dataErrorLiveData = _dataErrorLiveData
-    val homeTabLiveData = _homeTabLiveData
-    val stateTabLiveData = _stateTabLiveData
-    val resourceTabLiveData = _resourceTabLiveData
+    private val homeTabLiveData: LiveData<HomeData> = _homeTabLiveData
+    private val stateTabLiveData: LiveData<StateListData> = _stateTabLiveData
+    private val resourceTabLiveData: LiveData<ResourceListData> = _resourceTabLiveData
 
     fun getHomeData(): LiveData<HomeData> {
-        if (!isValidData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)) {
+        if (!isValidDataInApp()) {
             getHomeDataFromApi()
         }
         return homeTabLiveData
     }
 
     fun getStateData(): LiveData<StateListData> {
-        if (!isValidData(homeTabLiveData)) {
+        if (!isValidDataInApp()) {
             getHomeDataFromApi()
         }
         return stateTabLiveData
     }
 
     fun getResourcesData(): LiveData<ResourceListData> {
-        if (!isValidData(homeTabLiveData)) {
+        if (!isValidDataInApp()) {
             getHomeDataFromApi()
         }
         return resourceTabLiveData
     }
+
+    fun isValidDataInApp() = isValidLiveData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)
 
     private fun getHomeDataFromApi() {
         apiManager.getCountryData(
@@ -74,7 +77,7 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
     }
 
     private suspend fun processResponse(countryData: CountryData?) {
-        GlobalScope.launch {
+        coroutineScope {
             populateHomeFeedMap(countryData)
             updateHomeLiveData();
         }

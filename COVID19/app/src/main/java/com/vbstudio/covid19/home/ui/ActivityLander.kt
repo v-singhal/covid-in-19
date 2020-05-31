@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.vbstudio.annotations.DaggerActivity
 import com.vbstudio.covid19.R
 import com.vbstudio.covid19.core.ui.BaseActivity
-import com.vbstudio.covid19.core.utils.AnimationUtils
+import com.vbstudio.covid19.core.ext.revealView
 import com.vbstudio.covid19.home.viewModel.ViewModelLander
 import kotlinx.android.synthetic.main.activity_lander.*
 
@@ -53,7 +53,7 @@ class ActivityLander : BaseActivity() {
             val fragmentTag: String = fragment.javaClass.simpleName
             fragmentTransaction.replace(R.id.container_nav_fragments, it, fragmentTag)
             fragmentTransaction.commit()
-            AnimationUtils.revealView(container_nav_fragments)
+            container_nav_fragments.revealView()
         }
     }
 
