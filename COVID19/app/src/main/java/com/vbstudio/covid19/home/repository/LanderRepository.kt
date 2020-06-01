@@ -6,10 +6,12 @@ import com.vbstudio.covid19.core.networking.ApiManager
 import com.vbstudio.covid19.core.networking.interfaces.ResponseErrorListener
 import com.vbstudio.covid19.core.networking.interfaces.ResponseListener
 import com.vbstudio.covid19.core.repository.AppRepository
+import com.vbstudio.covid19.home.adapter.StateListAdapter
 import com.vbstudio.covid19.home.dao.*
 import com.vbstudio.covid19.home.viewModel.ViewModelLander
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
@@ -52,7 +54,8 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
         return resourceTabLiveData
     }
 
-    fun isValidDataInApp() = isValidLiveData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)
+    fun isValidDataInApp() =
+        isValidLiveData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)
 
     private fun getHomeDataFromApi() {
         apiManager.getCountryData(
@@ -77,9 +80,12 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
     }
 
     private suspend fun processResponse(countryData: CountryData?) {
-        coroutineScope {
+        CoroutineScope(Dispatchers.Default).launch {
             populateHomeFeedMap(countryData)
-            updateHomeLiveData();
+        }.invokeOnCompletion {
+            CoroutineScope(Dispatchers.Default).launch {
+                updateHomeLiveData();
+            }
         }
     }
 
@@ -101,13 +107,17 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
 
         _homeTabLiveData.postValue(
             HomeData(
-                stateDataList[0],
+                stateDataList.first {
+                    it.type == StateListAdapter.Companion.FeedRowType.COUNTRY
+                },
                 ViewModelLander.PageType.HOME.ordinal
             )
         )
         _stateTabLiveData.postValue(
             StateListData(
-                stateDataList.subList(1, stateDataList.size - 1),
+                stateDataList.filter {
+                    it.type == StateListAdapter.Companion.FeedRowType.STATE
+                },
                 ViewModelLander.PageType.STATE_LIST.ordinal
             )
         )
