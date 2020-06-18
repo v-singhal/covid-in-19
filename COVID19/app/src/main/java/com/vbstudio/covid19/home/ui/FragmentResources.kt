@@ -7,13 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vbstudio.annotations.DaggerFragment
 import com.vbstudio.covid19.R
-import com.vbstudio.covid19.home.dao.ResourceListData
+import com.vbstudio.covid19.home.adapter.ResourceListAdapter
+import com.vbstudio.covid19.home.dao.ResourceUIItem
 import com.vbstudio.covid19.home.viewModel.ViewModelResources
+import kotlinx.android.synthetic.main.fragment_resource.*
 
 @DaggerFragment
 class FragmentResources : Fragment() {
+
+    private val resourceListAdapter = ResourceListAdapter()
 
     private lateinit var viewModelResources: ViewModelResources
 
@@ -33,7 +38,14 @@ class FragmentResources : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModelResources = ViewModelProvider(this).get(ViewModelResources::class.java)
+        setupRecyclerView()
         getResourceListData()
+    }
+
+    private fun setupRecyclerView() {
+        rvResourceData.layoutManager = LinearLayoutManager(context)
+        rvResourceData.adapter = resourceListAdapter
+        rvResourceData.setHasFixedSize(true)
     }
 
     private fun getResourceListData() {
@@ -45,12 +57,12 @@ class FragmentResources : Fragment() {
 //        })
     }
 
-    private fun updateStateListData(resourceListData: ResourceListData?) {
-         updateUI(resourceListData)
+    private fun updateStateListData(resourceList: ArrayList<ResourceUIItem>) {
+         updateUI(resourceList)
     }
 
-    private fun updateUI(resourceLisData: ResourceListData?) {
-        // TODO: Update UI
+    private fun updateUI(resourceList: ArrayList<ResourceUIItem>) {
+        resourceListAdapter.refreshList(resourceList)
     }
 
 }

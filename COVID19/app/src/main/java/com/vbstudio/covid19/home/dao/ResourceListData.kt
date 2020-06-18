@@ -1,6 +1,12 @@
 package com.vbstudio.covid19.home.dao
 
-// TODO: Add support for resources
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class ResourceListData(
-    override val dataType: Int
-) : HomeBaseData(dataType)
+
+    @SerializedName("resources")
+    val resourceList: List<ResourceItemData>? = null
+) : Parcelable
