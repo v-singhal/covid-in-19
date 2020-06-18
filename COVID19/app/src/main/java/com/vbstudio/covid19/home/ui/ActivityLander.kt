@@ -76,7 +76,7 @@ class ActivityLander : BaseActivity() {
     }
 
     private fun getHomeData() {
-        viewModelLander.getHomeData()
+        viewModelLander.initialiseHomeData()
 //        viewModelLander.dataErrorLiveData.observe(this, Observer {
 //            Toast.makeText(this@ActivityLander, it, Toast.LENGTH_SHORT).show()
 //        })

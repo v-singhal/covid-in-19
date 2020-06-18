@@ -17,6 +17,6 @@ class ViewModelResources : ViewModel() {
     }
 
     fun getResources(): LiveData<ResourceListData> {
-       return landerRepository.getResourcesData()
+       return landerRepository.resourceTabLiveData
     }
 }
