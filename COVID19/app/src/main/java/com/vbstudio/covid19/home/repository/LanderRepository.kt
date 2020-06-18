@@ -16,43 +16,27 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
 
     private val HOME_CALL = "HomeApi"
 
-    // LiveData used internally
-    // private val _dataErrorLiveData: MutableLiveData<Int> = MutableLiveData()
-    private val _homeTabLiveData: MutableLiveData<HomeData> = MutableLiveData()
-    private val _stateTabLiveData: MutableLiveData<StateListData> = MutableLiveData()
-    private val _resourceTabLiveData: MutableLiveData<ResourceListData> = MutableLiveData()
-
     // Local Data used internally
     private val _homeFeedMap: HashMap<String, StateLatestData> = hashMapOf()
 
+    // LiveData used internally
+    private val _masterLiveData: MutableLiveData<StateListData> = MutableLiveData()
+    private val _resourceTabLiveData: MutableLiveData<ResourceListData> = MutableLiveData()
+    // private val _dataErrorLiveData: MutableLiveData<Int> = MutableLiveData()
+
     // LiveData for public access
+    val masterLiveData: LiveData<StateListData> = _masterLiveData
+    val resourceTabLiveData: LiveData<ResourceListData> = _resourceTabLiveData
     // val dataErrorLiveData = _dataErrorLiveData
-    private val homeTabLiveData: LiveData<HomeData> = _homeTabLiveData
-    private val stateTabLiveData: LiveData<StateListData> = _stateTabLiveData
-    private val resourceTabLiveData: LiveData<ResourceListData> = _resourceTabLiveData
 
-    fun getHomeData(): LiveData<HomeData> {
+    fun initialiseHomeData() {
         if (!isValidDataInApp()) {
             getHomeDataFromApi()
         }
-        return homeTabLiveData
     }
 
-    fun getStateData(): LiveData<StateListData> {
-        if (!isValidDataInApp()) {
-            getHomeDataFromApi()
-        }
-        return stateTabLiveData
-    }
-
-    fun getResourcesData(): LiveData<ResourceListData> {
-        if (!isValidDataInApp()) {
-            getHomeDataFromApi()
-        }
-        return resourceTabLiveData
-    }
-
-    fun isValidDataInApp() = isValidLiveData(homeTabLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)
+fun isValidDataInApp() =
+        isValidLiveData(masterLiveData) && !apiManager.isCountryDataInProgress(HOME_CALL)
 
     private fun getHomeDataFromApi() {
         apiManager.getCountryData(
@@ -78,8 +62,12 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
 
     private suspend fun processResponse(countryData: CountryData?) {
         coroutineScope {
-            populateHomeFeedMap(countryData)
-            updateHomeLiveData();
+            launch {
+                populateHomeFeedMap(countryData)
+                updateHomeLiveData()
+            }
+        }.invokeOnCompletion {
+            // dataErrorLiveData.postValue(it?.localizedMessage)
         }
     }
 
@@ -99,21 +87,10 @@ class LanderRepository(private val apiManager: ApiManager) : AppRepository() {
     private fun updateHomeLiveData() {
         val stateDataList = getStateDataList()
 
-        _homeTabLiveData.postValue(
-            HomeData(
-                stateDataList[0],
-                ViewModelLander.PageType.HOME.ordinal
-            )
-        )
-        _stateTabLiveData.postValue(
+        _masterLiveData.postValue(
             StateListData(
-                stateDataList.subList(1, stateDataList.size - 1),
+                stateDataList,
                 ViewModelLander.PageType.STATE_LIST.ordinal
-            )
-        )
-        _resourceTabLiveData.postValue(
-            ResourceListData(
-                ViewModelLander.PageType.RESOURCE_LIST.ordinal
             )
         )
     }
