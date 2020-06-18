@@ -21,4 +21,6 @@
 
     <dimen name="state_field_width">108dp</dimen>
 
+    <dimen name="toolbar_icon">24dp</dimen>
+
 </resources>

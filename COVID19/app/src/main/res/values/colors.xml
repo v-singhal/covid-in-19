@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    App theme-->
-    <color name="colorPrimary">@color/green</color>
-    <color name="colorPrimaryDark">@color/darkGreen</color>
-    <color name="colorAccent">@color/yellow</color>
-    <color name="toolbarBgColor">@color/darkYellow</color>
+    <color name="colorPrimary">@color/orange</color>
+    <color name="colorPrimaryDark">@color/red</color>
+    <color name="colorAccent">@color/red</color>
+    <color name="colorPrimaryBg">@color/white</color>
+    <color name="toolbarBgColor">@color/red</color>
+    <color name="toolbarTitleColor">@color/white</color>
 
     <!--    View theme-->
     <color name="confirmedCase">@color/pink</color>
@@ -13,30 +15,26 @@
     <color name="deceasedCase">@color/grey</color>
     <color name="dataTimestamp">@color/grey</color>
     <color name="stateTitle">@color/grey</color>
-    <color name="stateHeaderBg">@color/uberDarkGreen</color>
-    <color name="stateRowBg">@color/darkGreen</color>
-    <color name="stateRowAltBg">@color/mediumGreen</color>
+    <color name="stateHeaderBg">@color/deepBlue</color>
+    <color name="stateRowBg">@color/baseGrey</color>
 
     <!--    BottomNav theme-->
-    <color name="colorPrimaryBottomNav">@color/mediumGreen</color>
+    <color name="colorPrimaryBottomNav">@color/darkGrey</color>
     <color name="colorOnPrimaryBottomNav">@color/white</color>
 
     <!--Color pallet (Not to be used directly outside this file !!)-->
-    <color name="uberDarkGreen">#0A3648</color>
-    <color name="darkGreen">#0C4056</color>
-    <color name="mediumGreen">#0E4962</color>
+    <color name="white">#FFFFFF</color>
+    <color name="baseGrey">#F2F2F2</color>
+    <color name="deepBlue">#034AA6</color>
+    <color name="midBlue">#0554F2</color>
+    <color name="blue">#056CF2</color>
+    <color name="red">#F24822</color>
+
     <color name="green">#20BDA1</color>
-
-    <color name="uberYellow">#FFC107</color>
-    <color name="darkYellow">#D8C06D</color>
     <color name="yellow">#EFD477</color>
-
     <color name="orange">#FB6660</color>
-
     <color name="pink">#FB2162</color>
-
     <color name="grey">#999999</color>
     <color name="darkGrey">#333333</color>
-    <color name="white">#FFFFFF</color>
 
 </resources>
