@@ -30,6 +30,14 @@ class FragmentHome : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        container_confirmed.setupAsHeader()
+        container_active.setupAsHeader()
+        container_recovered.setupAsHeader()
+        container_deceased.setupAsHeader()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -52,10 +60,10 @@ class FragmentHome : Fragment() {
 
     private fun updateUI(homeData: HomeData?) {
         val data = homeData?.regionItemData
-        tv_confirmed.text = data?.confirmedForUI ?: "---"
-        tv_active.text = data?.activeForUI ?: "---"
-        tv_recovered.text = data?.recoveredForUI ?: "---"
-        tv_deceased.text = data?.deathsForUI ?: "---"
+        container_confirmed.setCounter(data?.confirmedForUI)
+        container_active.setCounter(data?.activeForUI)
+        container_recovered.setCounter(data?.recoveredForUI)
+        container_deceased.setCounter(data?.deathsForUI)
         tv_data_timestamp.text = data?.lastupdatedtimeForUI ?: "---"
     }
 

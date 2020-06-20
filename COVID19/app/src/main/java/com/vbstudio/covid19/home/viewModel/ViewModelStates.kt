@@ -8,6 +8,7 @@ import com.vbstudio.covid19.Covid19Application
 import com.vbstudio.covid19.home.adapter.StateListAdapter
 import com.vbstudio.covid19.home.dao.StateListData
 import com.vbstudio.covid19.home.repository.LanderRepository
+import com.vbstudio.covid19.home.utils.StateDataUtils
 import javax.inject.Inject
 
 class ViewModelStates : ViewModel() {
@@ -24,9 +25,8 @@ class ViewModelStates : ViewModel() {
         {
             val stateListLiveData: MutableLiveData<StateListData> = MutableLiveData()
             val stateListData = StateListData(
-                it.regionItemDataList.filter { regionItemData ->
-                    regionItemData.type == StateListAdapter.Companion.FeedRowType.STATE
-                }, StateListAdapter.Companion.FeedRowType.STATE.ordinal
+                StateDataUtils.getStatesFromList(it.regionItemDataList),
+                StateListAdapter.Companion.FeedRowType.STATE.ordinal
             )
             stateListLiveData.postValue(stateListData)
             stateListLiveData

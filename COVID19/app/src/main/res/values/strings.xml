@@ -11,5 +11,5 @@
     <string name="menu_state">States</string>
     <string name="menu_resources">Resources</string>
     <string name="state">State</string>
-    <string name="resourceCount">Resources</string>
+    <string name="resources">Resources</string>
 </resources>

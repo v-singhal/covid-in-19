@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Delhi" />
 
-        <LinearLayout
+        <com.vbstudio.covid19.home.ui.ConfirmedStatsView
             android:id="@+id/container_confirmed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,35 +40,9 @@
             app:layout_constraintBottom_toTopOf="@+id/container_recovered"
             app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
             app:layout_constraintRight_toLeftOf="@+id/container_active"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.vbstudio.covid19.core.ui.TextViewMedium
-                android:id="@+id/tv_confirmed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/confirmedCase"
-                android:textSize="@dimen/text_regular"
-                tools:text="30,000" />
-
-            <View
-                android:layout_width="16dp"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:background="@color/confirmedCase" />
-
-            <com.vbstudio.covid19.core.ui.TextViewRegular
-                android:id="@+id/tv_label_confirmed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/confirmed"
-                android:textColor="@color/confirmedCase"
-                android:textSize="@dimen/text_mini" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.vbstudio.covid19.home.ui.ActiveStatsView
             android:id="@+id/container_active"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -78,35 +52,9 @@
             app:layout_constraintBottom_toTopOf="@id/container_deceased"
             app:layout_constraintLeft_toRightOf="@+id/container_confirmed"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.vbstudio.covid19.core.ui.TextViewMedium
-                android:id="@+id/tv_active"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/activeCase"
-                android:textSize="@dimen/text_regular"
-                tools:text="40,000" />
-
-            <View
-                android:layout_width="16dp"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:background="@color/activeCase" />
-
-            <com.vbstudio.covid19.core.ui.TextViewRegular
-                android:id="@+id/tv_label_active"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/active"
-                android:textColor="@color/activeCase"
-                android:textSize="@dimen/text_mini" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.vbstudio.covid19.home.ui.RecoveredStatsView
             android:id="@+id/container_recovered"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -115,35 +63,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
             app:layout_constraintRight_toLeftOf="@+id/container_deceased"
-            app:layout_constraintTop_toBottomOf="@+id/container_confirmed">
+            app:layout_constraintTop_toBottomOf="@+id/container_confirmed" />
 
-            <com.vbstudio.covid19.core.ui.TextViewMedium
-                android:id="@+id/tv_recovered"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/recoveredCase"
-                android:textSize="@dimen/text_regular"
-                tools:text="50,000" />
-
-            <View
-                android:layout_width="16dp"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:background="@color/recoveredCase" />
-
-            <com.vbstudio.covid19.core.ui.TextViewRegular
-                android:id="@+id/tv_label_recovered"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/recovered"
-                android:textColor="@color/recoveredCase"
-                android:textSize="@dimen/text_mini" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.vbstudio.covid19.home.ui.DeceasedStatsView
             android:id="@+id/container_deceased"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -152,34 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/container_recovered"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_active">
-
-            <com.vbstudio.covid19.core.ui.TextViewMedium
-                android:id="@+id/tv_deceased"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/deceasedCase"
-                android:textSize="@dimen/text_regular"
-                tools:text="10,000" />
-
-            <View
-                android:layout_width="16dp"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:background="@color/deceasedCase" />
-
-
-            <com.vbstudio.covid19.core.ui.TextViewRegular
-                android:id="@+id/tv_label_deceased"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/deceased"
-                android:textColor="@color/deceasedCase"
-                android:textSize="@dimen/text_mini" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/container_active" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

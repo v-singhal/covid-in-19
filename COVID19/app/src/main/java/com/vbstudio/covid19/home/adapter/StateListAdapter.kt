@@ -51,11 +51,10 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         override fun onBind(data: RegionItemData?, position: Int) {
             itemView.tv_state_name.text = data?.state
-            itemView.tv_confirmed.text = data?.confirmedForUI ?: "---"
-            itemView.tv_active.text = data?.activeForUI ?: "---"
-            itemView.tv_recovered.text = data?.recoveredForUI ?: "---"
-            itemView.tv_deceased.text = data?.deathsForUI ?: "---"
-//            itemView.container_stats.setBackgroundResource(if (position % 2 != 0) R.drawable.state_row_bg_alt else R.drawable.state_row_bg)
+            itemView.container_confirmed.setCounter(data?.confirmedForUI)
+            itemView.container_active.setCounter(data?.activeForUI)
+            itemView.container_recovered.setCounter(data?.recoveredForUI)
+            itemView.container_deceased.setCounter(data?.deathsForUI)
         }
     }
 }
