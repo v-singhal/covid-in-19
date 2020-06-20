@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vbstudio.annotations.DaggerFragment
 import com.vbstudio.covid19.R
+import com.vbstudio.covid19.core.utils.UIUtils
 import com.vbstudio.covid19.home.dao.HomeData
 import com.vbstudio.covid19.home.dao.StateListData
 import com.vbstudio.covid19.home.viewModel.ViewModelHome
@@ -17,6 +18,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 @DaggerFragment
 class FragmentHome : Fragment() {
+
+    private val SCALING_FACTOR: Float = 0.6F
+    private val ROW_COUNT: Int = 2
 
     private lateinit var viewModelHome: ViewModelHome
 
@@ -34,6 +38,7 @@ class FragmentHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateHeaderHeight()
         container_confirmed.setupAsHeader()
         container_active.setupAsHeader()
         container_recovered.setupAsHeader()
@@ -45,6 +50,17 @@ class FragmentHome : Fragment() {
 
         viewModelHome = ViewModelProvider(this).get(ViewModelHome::class.java)
         getHomeData()
+    }
+
+    private fun updateHeaderHeight() {
+        val screenHeight = UIUtils.getDisplayHeight(context)
+        screenHeight?.let {
+            val componentHeight = (it * SCALING_FACTOR / ROW_COUNT).toInt()
+            container_confirmed.layoutParams.height = componentHeight
+            container_active.layoutParams.height = componentHeight
+            container_recovered.layoutParams.height = componentHeight
+            container_deceased.layoutParams.height = componentHeight
+        }
     }
 
     private fun getHomeData() {
@@ -75,7 +91,7 @@ class FragmentHome : Fragment() {
         updateTopSectionView(
             stateList,
             top_stats_recovered,
-            "Top 5 Recovered States",
+            "Top Recovered Cases",
             StatsSectionView.StatsType.Recovered
         )
     }
@@ -84,7 +100,7 @@ class FragmentHome : Fragment() {
         updateTopSectionView(
             stateList,
             top_stats_active,
-            "Top 5 Active States",
+            "Top Active Cases",
             StatsSectionView.StatsType.Active
         )
     }
