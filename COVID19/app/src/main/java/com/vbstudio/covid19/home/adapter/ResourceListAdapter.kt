@@ -48,7 +48,7 @@ class ResourceListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         override fun onBind(data: ResourceUIItem?, position: Int) {
             itemView.tv_state_name.text = data?.state
-            itemView.tv_resource_count.text = (data?.resourceItemDataList?.size?: "---").toString()
+            itemView.container_resource_count.setCounter((data?.resourceItemDataList?.size?.toString()))
         }
     }
 }

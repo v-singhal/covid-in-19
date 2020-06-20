@@ -19,9 +19,111 @@
     </style>
 
     <style name="BottomNavStyle" parent="Theme.MaterialComponents">
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="bottomNavigationStyle">
+            @style/Widget.MaterialComponents.BottomNavigationView.Colored
+        </item>
         <item name="colorPrimary">@color/colorPrimaryBottomNav</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryBottomNav</item>
         <item name="font">@font/montserrat_regular</item>
     </style>
+
+    <style name="StatesSectionHomeConfirmed">
+        <item name="textColor">@color/confirmedCase</item>
+        <item name="counterTextSize">@dimen/text_xlarge</item>
+        <item name="labelCounterTextSize">@dimen/text_small</item>
+        <item name="separatorWidth">36dp</item>
+        <item name="separatorThickness">0.5dp</item>
+        <item name="separatorMargin">@dimen/margin_medium</item>
+        <item name="separatorColor">@color/confirmedCase</item>
+    </style>
+
+    <style name="StatesSectionHomeActive">
+        <item name="textColor">@color/activeCase</item>
+        <item name="counterTextSize">@dimen/text_xlarge</item>
+        <item name="labelCounterTextSize">@dimen/text_small</item>
+        <item name="separatorWidth">36dp</item>
+        <item name="separatorThickness">0.5dp</item>
+        <item name="separatorMargin">@dimen/margin_medium</item>
+        <item name="separatorColor">@color/activeCase</item>
+    </style>
+
+    <style name="StatesSectionHomeRecovered">
+        <item name="textColor">@color/recoveredCase</item>
+        <item name="counterTextSize">@dimen/text_xlarge</item>
+        <item name="labelCounterTextSize">@dimen/text_small</item>
+        <item name="separatorWidth">36dp</item>
+        <item name="separatorThickness">0.5dp</item>
+        <item name="separatorMargin">@dimen/margin_medium</item>
+        <item name="separatorColor">@color/recoveredCase</item>
+    </style>
+
+    <style name="StatesSectionHomeDeceased">
+        <item name="textColor">@color/deceasedCase</item>
+        <item name="counterTextSize">@dimen/text_xlarge</item>
+        <item name="labelCounterTextSize">@dimen/text_small</item>
+        <item name="separatorWidth">36dp</item>
+        <item name="separatorThickness">0.5dp</item>
+        <item name="separatorMargin">@dimen/margin_medium</item>
+        <item name="separatorColor">@color/deceasedCase</item>
+    </style>
+
+    <style name="StatesSectionHomeResource">
+        <item name="textColor">@color/resourceCount</item>
+        <item name="counterTextSize">@dimen/text_xlarge</item>
+        <item name="labelCounterTextSize">@dimen/text_small</item>
+        <item name="separatorWidth">36dp</item>
+        <item name="separatorThickness">0.5dp</item>
+        <item name="separatorMargin">@dimen/margin_medium</item>
+        <item name="separatorColor">@color/resourceCount</item>
+    </style>
+
+    <style name="StatesSectionCardConfirmed">
+        <item name="textColor">@color/confirmedCase</item>
+        <item name="counterTextSize">@dimen/text_regular</item>
+        <item name="labelCounterTextSize">@dimen/text_mini</item>
+        <item name="separatorWidth">16dp</item>
+        <item name="separatorThickness">0.3dp</item>
+        <item name="separatorMargin">@dimen/margin_small</item>
+        <item name="separatorColor">@color/confirmedCase</item>
+    </style>
+
+    <style name="StatesSectionCardActive">
+        <item name="textColor">@color/activeCase</item>
+        <item name="counterTextSize">@dimen/text_regular</item>
+        <item name="labelCounterTextSize">@dimen/text_mini</item>
+        <item name="separatorWidth">16dp</item>
+        <item name="separatorThickness">0.3dp</item>
+        <item name="separatorMargin">@dimen/margin_small</item>
+        <item name="separatorColor">@color/activeCase</item>
+    </style>
+
+    <style name="StatesSectionCardRecovered">
+        <item name="textColor">@color/recoveredCase</item>
+        <item name="counterTextSize">@dimen/text_regular</item>
+        <item name="labelCounterTextSize">@dimen/text_mini</item>
+        <item name="separatorWidth">16dp</item>
+        <item name="separatorThickness">0.3dp</item>
+        <item name="separatorMargin">@dimen/margin_small</item>
+        <item name="separatorColor">@color/recoveredCase</item>
+    </style>
+
+    <style name="StatesSectionCardDeceased">
+        <item name="textColor">@color/deceasedCase</item>
+        <item name="counterTextSize">@dimen/text_regular</item>
+        <item name="labelCounterTextSize">@dimen/text_mini</item>
+        <item name="separatorWidth">16dp</item>
+        <item name="separatorThickness">0.3dp</item>
+        <item name="separatorMargin">@dimen/margin_small</item>
+        <item name="separatorColor">@color/deceasedCase</item>
+    </style>
+
+    <style name="StatesSectionCardResource">
+        <item name="textColor">@color/resourceCount</item>
+        <item name="counterTextSize">@dimen/text_regular</item>
+        <item name="labelCounterTextSize">@dimen/text_mini</item>
+        <item name="separatorWidth">16dp</item>
+        <item name="separatorThickness">0.3dp</item>
+        <item name="separatorMargin">@dimen/margin_small</item>
+        <item name="separatorColor">@color/resourceCount</item></style>
+
 </resources>

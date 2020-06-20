@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Delhi" />
 
-        <LinearLayout
+        <com.vbstudio.covid19.home.ui.ResourceStatsView
             android:id="@+id/container_resource_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,33 +41,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toRightOf="@+id/tv_state_name"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.vbstudio.covid19.core.ui.TextViewMedium
-                android:id="@+id/tv_resource_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/resourceCount"
-                android:textSize="@dimen/text_regular"
-                tools:text="30,000" />
-
-            <View
-                android:layout_width="16dp"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:background="@color/resourceCount" />
-
-            <com.vbstudio.covid19.core.ui.TextViewRegular
-                android:id="@+id/tv_label_resource_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/resourceCount"
-                android:textColor="@color/resourceCount"
-                android:textSize="@dimen/text_mini" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
