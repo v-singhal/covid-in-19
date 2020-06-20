@@ -1,72 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_large">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.vbstudio.covid19.home.ui.ConfirmedStatsView
-        android:id="@+id/container_confirmed"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_medium"
-        app:layout_constraintBottom_toTopOf="@+id/container_recovered"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/container_active"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.vbstudio.covid19.home.ui.ActiveStatsView
-        android:id="@+id/container_active"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_medium"
-        app:layout_constraintBottom_toTopOf="@+id/container_deceased"
-        app:layout_constraintLeft_toRightOf="@+id/container_confirmed"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.vbstudio.covid19.home.ui.RecoveredStatsView
-        android:id="@+id/container_recovered"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_medium"
-        app:layout_constraintBottom_toTopOf="@+id/tv_data_timestamp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/container_deceased"
-        app:layout_constraintTop_toBottomOf="@+id/container_confirmed" />
-
-    <com.vbstudio.covid19.home.ui.DeceasedStatsView
-        android:id="@+id/container_deceased"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_medium"
-        app:layout_constraintBottom_toTopOf="@+id/tv_data_timestamp"
-        app:layout_constraintLeft_toRightOf="@+id/container_recovered"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_active" />
-
-    <com.vbstudio.covid19.core.ui.TextViewRegular
-        android:id="@+id/tv_data_timestamp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/padding_small"
-        android:textColor="@color/dataTimestamp"
-        android:textSize="@dimen/text_small"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_recovered"
-        tools:text="25 May, 12:34 PM IST" />
+        android:layout_height="wrap_content">
+
+        <com.vbstudio.covid19.home.ui.ConfirmedStatsView
+            android:id="@+id/container_confirmed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/container_active"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.vbstudio.covid19.home.ui.ActiveStatsView
+            android:id="@+id/container_active"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large"
+            app:layout_constraintLeft_toRightOf="@+id/container_confirmed"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.vbstudio.covid19.home.ui.RecoveredStatsView
+            android:id="@+id/container_recovered"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/container_deceased"
+            app:layout_constraintTop_toBottomOf="@+id/container_confirmed" />
+
+        <com.vbstudio.covid19.home.ui.DeceasedStatsView
+            android:id="@+id/container_deceased"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large"
+            app:layout_constraintLeft_toRightOf="@+id/container_recovered"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_active" />
+
+        <com.vbstudio.covid19.home.ui.TopStatsList
+            android:id="@+id/top_stats_recovered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/top_stats_active"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_recovered"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.vbstudio.covid19.home.ui.TopStatsList
+            android:id="@+id/top_stats_active"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tv_data_timestamp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_stats_recovered" />
+
+        <com.vbstudio.covid19.core.ui.TextViewRegular
+            android:id="@+id/tv_data_timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:gravity="center"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/dataTimestamp"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_stats_active"
+            tools:text="25 May, 12:34 PM IST" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

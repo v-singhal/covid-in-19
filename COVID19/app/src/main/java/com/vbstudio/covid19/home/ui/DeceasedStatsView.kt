@@ -34,8 +34,7 @@ class DeceasedStatsView : StatsSectionView {
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+    init {
         setLabel(R.string.deceased)
         setup()
     }

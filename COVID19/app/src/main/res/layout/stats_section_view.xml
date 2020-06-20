@@ -8,7 +8,7 @@
 
     <com.vbstudio.covid19.core.ui.TextViewBold
         android:id="@+id/tv_counter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         tools:text="30,00,000" />
@@ -17,11 +17,11 @@
         android:id="@+id/view_separator"
         android:layout_width="36dp"
         android:layout_height="0.5dp"
-        tools:background="@color/confirmedCase" />
+        tools:background="@color/darkGrey" />
 
     <com.vbstudio.covid19.core.ui.TextViewMedium
         android:id="@+id/tv_label_counter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         tools:text="@string/confirmed" />

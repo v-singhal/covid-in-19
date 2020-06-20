@@ -9,6 +9,7 @@
     <color name="toolbarTitleColor">@color/red</color>
 
     <!--    View theme-->
+    <color name="sectionSeparator">@color/white</color>
     <color name="confirmedCase">@color/pink</color>
     <color name="activeCase">@color/orange</color>
     <color name="recoveredCase">@color/green</color>
@@ -19,6 +20,8 @@
     <color name="stateRowBg">@color/darkGrey</color>
     <color name="resourceRowBg">@color/darkGrey</color>
     <color name="resourceCount">@color/yellow</color>
+    <color name="topStatsHeader">@color/darkGrey</color>
+    <color name="topStatsSeparator">@color/darkGrey</color>
 
     <!--    BottomNav theme-->
     <color name="colorPrimaryBottomNav">@color/toolbarBgColor</color>

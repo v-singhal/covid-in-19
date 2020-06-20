@@ -49,6 +49,10 @@ class StateListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent,
         R.layout.item_state_aon
     ) {
+
+        override fun onCreate() {
+        }
+
         override fun onBind(data: RegionItemData?, position: Int) {
             itemView.tv_state_name.text = data?.state
             itemView.container_confirmed.setCounter(data?.confirmedForUI)
