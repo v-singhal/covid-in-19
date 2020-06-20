@@ -12,15 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/top_stats_margin"
         android:gravity="center"
-        android:textColor="@color/darkGrey"
+        android:textColor="@color/topStatsHeader"
         tools:text="Top 5 Recoveries" />
 
     <View
         android:id="@+id/view_separator"
         android:layout_width="36dp"
         android:layout_height="0.5dp"
-        android:layout_margin="@dimen/top_stats_margin"
-        android:background="@color/darkGrey" />
+        android:layout_marginLeft="@dimen/top_stats_margin"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:background="@color/topStatsSeparator" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_top_stats_list"

@@ -23,6 +23,6 @@
 
     <dimen name="toolbar_icon">24dp</dimen>
 
-    <dimen name="top_stats_margin">@dimen/margin_medium</dimen>
+    <dimen name="top_stats_margin">@dimen/margin_xlarge</dimen>
 
 </resources>

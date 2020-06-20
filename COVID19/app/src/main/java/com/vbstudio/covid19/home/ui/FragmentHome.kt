@@ -3,6 +3,7 @@ package com.vbstudio.covid19.home.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -62,25 +63,45 @@ class FragmentHome : Fragment() {
     }
 
     private fun updateHomeData(homeData: HomeData) {
-        val data = homeData?.regionItemData
-        container_confirmed.setCounter(data?.confirmedForUI)
-        container_active.setCounter(data?.activeForUI)
-        container_recovered.setCounter(data?.recoveredForUI)
-        container_deceased.setCounter(data?.deathsForUI)
-        tv_data_timestamp.text = data?.lastupdatedtimeForUI ?: "---"
+        val data = homeData.regionItemData
+        container_confirmed.setCounter(data.confirmedForUI)
+        container_active.setCounter(data.activeForUI)
+        container_recovered.setCounter(data.recoveredForUI)
+        container_deceased.setCounter(data.deathsForUI)
+        tv_data_timestamp.text = data.lastupdatedtimeForUI ?: "---"
     }
 
     private fun updateTopRecoveries(stateList: StateListData?) {
-        stateList?.regionItemDataList?.let {
-            top_stats_recovered.setupList("Top 5 Recovered States",
-                it, StatsSectionView.StatsType.Recovered)
-        }
+        updateTopSectionView(
+            stateList,
+            top_stats_recovered,
+            "Top 5 Recovered States",
+            StatsSectionView.StatsType.Recovered
+        )
     }
 
     private fun updateTopActiveCases(stateList: StateListData?) {
+        updateTopSectionView(
+            stateList,
+            top_stats_active,
+            "Top 5 Active States",
+            StatsSectionView.StatsType.Active
+        )
+    }
+
+    private fun updateTopSectionView(
+        stateList: StateListData?,
+        topSectionView: TopStatsList,
+        sectionHeader: String,
+        statsType: StatsSectionView.StatsType
+    ) {
         stateList?.regionItemDataList?.let {
-            top_stats_active.setupList("Top 5 Active States",
-                it, StatsSectionView.StatsType.Active)
+            topSectionView.visibility = VISIBLE
+            topSectionView.setupList(
+                sectionHeader,
+                it,
+                statsType
+            )
         }
     }
 
