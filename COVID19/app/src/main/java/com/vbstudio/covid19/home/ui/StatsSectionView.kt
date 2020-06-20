@@ -17,16 +17,21 @@ open class StatsSectionView : LinearLayout {
 
     private val DEFAULT_TEXT_SIZE = 14
 
+    enum class StatsType {
+        Confirmed,
+        Active,
+        Recovered,
+        Deceased
+    }
+
     constructor(context: Context?)
             : super(context) {
-        initialize()
     }
 
     constructor(
         context: Context?,
         attrs: AttributeSet?
     ) : super(context, attrs) {
-        initialize()
     }
 
     constructor(
@@ -34,7 +39,6 @@ open class StatsSectionView : LinearLayout {
         attrs: AttributeSet?,
         defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
-        initialize()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -44,18 +48,22 @@ open class StatsSectionView : LinearLayout {
         defStyleAttr: Int,
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initialize()
     }
 
-    private fun initialize() {
-        addView(LayoutInflater.from(context).inflate(R.layout.stats_section_view, null, false))
+    init {
+        this.addView(LayoutInflater.from(context).inflate(R.layout.stats_section_view, null, false))
     }
-
 
     protected fun applyStyle(@StyleRes styleRedId: Int) {
         val attributes: TypedArray =
             context.obtainStyledAttributes(styleRedId, R.styleable.StatsSectionView)
 
+        applyStyle(attributes)
+
+        attributes.recycle()
+    }
+
+    private fun applyStyle(attributes: TypedArray) {
         val textColor = attributes.getColor(
             R.styleable.StatsSectionView_textColor,
             resources.getColor(R.color.baseGrey)
@@ -100,8 +108,6 @@ open class StatsSectionView : LinearLayout {
             resources.getColor(R.color.baseGrey)
         )
         view_separator.setBackgroundColor(separatorColor)
-
-        attributes.recycle()
     }
 
     protected fun setLabel(@StringRes stringRes: Int) {

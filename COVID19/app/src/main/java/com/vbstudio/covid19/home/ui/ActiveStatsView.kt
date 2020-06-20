@@ -34,8 +34,7 @@ class ActiveStatsView : StatsSectionView {
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+    init {
         setLabel(R.string.active)
         setup()
     }

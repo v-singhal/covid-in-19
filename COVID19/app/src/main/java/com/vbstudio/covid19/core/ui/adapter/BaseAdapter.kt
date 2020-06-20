@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseViewHolder<T>(
     parent: ViewGroup,
-    latoutId: Int
+    layoutId: Int
 ) : RecyclerView.ViewHolder(
     LayoutInflater
         .from(parent.context)
-        .inflate(latoutId, parent, false)
+        .inflate(layoutId, parent, false)
 ) {
+
+    abstract fun onCreate ()
+
     abstract fun onBind(data: T?, position: Int)
 
 }

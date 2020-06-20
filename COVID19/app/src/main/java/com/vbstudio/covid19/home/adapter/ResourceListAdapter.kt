@@ -12,16 +12,6 @@ class ResourceListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var resourceList: ArrayList<ResourceUIItem> = arrayListOf()
 
-    companion object {
-        const val OPACITY_EVEN_ROW = 0.2F
-        const val OPACITY_ODD_ROW = 0F
-
-        enum class FeedRowType {
-            COUNTRY,
-            STATE
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ResourceViewHolder(parent)
     }
@@ -46,6 +36,10 @@ class ResourceListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         parent,
         R.layout.item_resource_list_data
     ) {
+
+        override fun onCreate() {
+        }
+
         override fun onBind(data: ResourceUIItem?, position: Int) {
             itemView.tv_state_name.text = data?.state
             itemView.container_resource_count.setCounter((data?.resourceItemDataList?.size?.toString()))
