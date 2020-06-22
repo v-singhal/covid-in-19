@@ -91,7 +91,7 @@ class FragmentHome : Fragment() {
         updateTopSectionView(
             stateList,
             top_stats_recovered,
-            "Top Recovered Cases",
+            getString(R.string.safe_states),
             StatsSectionView.StatsType.Recovered
         )
     }
@@ -100,7 +100,7 @@ class FragmentHome : Fragment() {
         updateTopSectionView(
             stateList,
             top_stats_active,
-            "Top Active Cases",
+            getString(R.string.active_states),
             StatsSectionView.StatsType.Active
         )
     }
