@@ -12,4 +12,6 @@
     <string name="menu_resources">Resources</string>
     <string name="state">State</string>
     <string name="resources">Resources</string>
+    <string name="safe_states">Top Safe States</string>
+    <string name="active_states">Top Active States</string>
 </resources>

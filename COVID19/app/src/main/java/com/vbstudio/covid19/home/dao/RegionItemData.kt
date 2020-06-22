@@ -1,6 +1,7 @@
 package com.vbstudio.covid19.home.dao
 
 import android.os.Parcelable
+import com.vbstudio.covid19.core.utils.NumberUtils
 import com.vbstudio.covid19.core.utils.StringUtils
 import com.vbstudio.covid19.home.adapter.StateListAdapter
 import kotlinx.android.parcel.Parcelize
@@ -35,6 +36,12 @@ data class RegionItemData(
     val confirmedForUI: String? = null,
 
     val deathsForUI: String? = null,
+
+    val activePercent: Float? = null,
+
+    val recoveryPercent: Float? = null,
+
+    val deceasedPercent: Float? = null,
 
     val lastupdatedtimeForUI: String? = null,
 
@@ -82,6 +89,9 @@ data class RegionItemData(
         formatNumbers(stateLatestData.active, stateLatestData.statecode),
         formatNumbers(stateLatestData.confirmed, stateLatestData.statecode),
         formatNumbers(stateLatestData.deaths, stateLatestData.statecode),
+        NumberUtils.getPercentage(stateLatestData.active, stateLatestData.confirmed),
+        NumberUtils.getPercentage(stateLatestData.recovered, stateLatestData.confirmed),
+        NumberUtils.getPercentage(stateLatestData.deaths, stateLatestData.confirmed),
         formatTimestamp(stateLatestData.lastupdatedtime),
         type = getItemType(stateLatestData.statecode)
 

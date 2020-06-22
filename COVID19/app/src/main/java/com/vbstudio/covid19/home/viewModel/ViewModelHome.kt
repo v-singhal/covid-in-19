@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class ViewModelHome : ViewModel() {
 
-    private val TOP_STATS_COUNT: Int = 5
+    private val TOP_STATS_COUNT: Int = 10
 
     @Inject
     lateinit var landerRepository: LanderRepository
@@ -44,7 +44,7 @@ class ViewModelHome : ViewModel() {
             val stateListData = StateListData(
                 StateDataUtils.getStatesFromList(it.regionItemDataList)
                     .sortedByDescending {
-                        it.recovered?.toInt()
+                        it.recoveryPercent?.toInt()
                     }
                     .subList(0, TOP_STATS_COUNT),
                 StateListAdapter.Companion.FeedRowType.STATE.ordinal
